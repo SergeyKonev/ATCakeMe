@@ -19,7 +19,7 @@ namespace atFrameWork2.PageObjects
         }
 
         public PortalHomePage Login(User admin)
-        {
+        {   
             DriverActions.OpenUri(portalInfo.PortalUri);
             var loginField = new WebItem("//input[@id='login']", "Поле для ввода логина");
             var pwdField = new WebItem("//input[@id='password']", "Поле для ввода пароля");

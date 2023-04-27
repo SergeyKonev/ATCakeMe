@@ -1,4 +1,4 @@
-﻿using atFrameWork2.BaseFramework;
+﻿/*using atFrameWork2.BaseFramework;
 using atFrameWork2.BaseFramework.LogTools;
 using atFrameWork2.PageObjects;
 using atFrameWork2.SeleniumFramework;
@@ -59,3 +59,4 @@ namespace ATframework3demo.TestCases
         }
     }
 }
+*/
