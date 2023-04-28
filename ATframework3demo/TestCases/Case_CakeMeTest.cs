@@ -1,6 +1,5 @@
 ﻿using atFrameWork2.BaseFramework;
 using atFrameWork2.BaseFramework.LogTools;
-using atFrameWork2.PageObjects;
 using atFrameWork2.SeleniumFramework;
 using ATframework3demo.PageObjects;
 
