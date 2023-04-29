@@ -2,6 +2,7 @@
 using atFrameWork2.BaseFramework.LogTools;
 using atFrameWork2.SeleniumFramework;
 using ATframework3demo.PageObjects;
+using OpenQA.Selenium;
 
 namespace ATframework3demo.TestCases
 {
@@ -10,13 +11,13 @@ namespace ATframework3demo.TestCases
         protected override List<TestCase> GetCases()
         {
             var caseCollection = new List<TestCase>();
-            caseCollection.Add(new TestCase("Проверка перехода на сайт", homePage => SendToAllByDefault(homePage)));
+            caseCollection.Add(new TestCase("Проверка перехода на сайт", (mainPage, info) => SiteOpened(mainPage)));
             return caseCollection;
         }
 
-        void SendToAllByDefault(MainPage mainPage)
+        void SiteOpened(MainPage mainPage)
         {
-            Thread.Sleep(1000);
+            //TODO - Сделать проверку названия сайта во вкладке
         }
     }
 }
