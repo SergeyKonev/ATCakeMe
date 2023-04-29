@@ -7,9 +7,9 @@ using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Text;
-
 namespace atFrameWork2.BaseFramework
 {
+
     public class TestCase
     {
         public static TestCase RunningTestCase { get; set; }
@@ -20,7 +20,7 @@ namespace atFrameWork2.BaseFramework
         /// <param name="title">Название тесткейса</param>
         /// <param name="body">Ссылка на метод тела кейса</param>
         /// <exception cref="ArgumentNullException"></exception>
-        public TestCase(string title, Action<MainPage> body)
+        public TestCase(string title, Action<MainPage, PortalInfo> body)
         {
             Title = title ?? throw new ArgumentNullException(nameof(title));
             Body = body ?? throw new ArgumentNullException(nameof(body));
@@ -44,7 +44,7 @@ namespace atFrameWork2.BaseFramework
                 Log.Info($"---------------Запуск кейса '{Title}'---------------");
                 DriverActions.OpenUri(testPortal.PortalUri);
                 var mainPage = new MainPage();
-                Body.Invoke(mainPage);
+                Body.Invoke(mainPage, testPortal);
             }
             catch (Exception e)
             {
@@ -73,7 +73,7 @@ namespace atFrameWork2.BaseFramework
         }
 
         public string Title { get; set; }
-        Action<MainPage> Body { get; set; }
+        Action<MainPage, PortalInfo> Body { get; set; }
         public TestCaseTreeNode Node { get; set; }
         public string CaseLogPath { get; set; }
         public List<LogMessage> CaseLog { get; } = new List<LogMessage>();
