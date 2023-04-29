@@ -18,8 +18,9 @@ namespace ATframework3demo.TestCases
 
         void SendToAllByDefault(MainPage mainPage, PortalInfo info)
         {
-            mainPage.EnterLoginPage().LogIn(info);
-            if (!mainPage.IsAuthorized())
+            var header = new Header(); 
+            header.EnterLoginPage().LogIn(info);
+            if (!header.IsAuthorized())
                 Log.Error("Не появилась кнопка входа в профиль после авторизации");
         }
     }
