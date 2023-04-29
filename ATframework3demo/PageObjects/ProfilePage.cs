@@ -1,6 +1,8 @@
-﻿namespace ATframework3demo.PageObjects;
-
-public class ProfilePage
+﻿namespace ATframework3demo.PageObjects
 {
-    // TODO - Написать класс
+    public class ProfilePage
+    {
+        
+    }
+
 }
