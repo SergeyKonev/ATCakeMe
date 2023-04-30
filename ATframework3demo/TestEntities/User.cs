@@ -7,9 +7,9 @@ namespace atFrameWork2.TestEntities
 {
     public class User
     {
-        public User(string login, string password, 
-            string email, string firstName, string secondName, 
-            Gender gender, string? additionalInfo = null, string? city = null)
+        public User(string? login = null, string? password = null, 
+            string? email = null, string? firstName = null, string? secondName = null, 
+            Gender? gender = null, string? additionalInfo = null, string? city = null)
         {
             Login = login;
             Password = password;
@@ -32,12 +32,12 @@ namespace atFrameWork2.TestEntities
         /// <summary>
         /// Информация о пользователе
         /// </summary>
-        public string Login { get; set; }
-        public string Password { get; set; }
-        public string Email { get; set; }
-        public string FirstName { get; set; }
-        public string SecondName { get; set; }
-        public Gender Gender { get; set; }
+        public string? Login { get; set; }
+        public string? Password { get; set; }
+        public string? Email { get; set; }
+        public string? FirstName { get; set; }
+        public string? SecondName { get; set; }
+        public Gender? Gender { get; set; }
         public string? AdditionalInfo { get; set; }
         public string? City { get; set; }
     }
