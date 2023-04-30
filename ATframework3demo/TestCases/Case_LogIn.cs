@@ -11,16 +11,15 @@ namespace ATframework3demo.TestCases
         protected override List<TestCase> GetCases()
         {
             var caseCollection = new List<TestCase>();
-            caseCollection.Add(new TestCase("Проверка авторизации", (mainPage, info) => SendToAllByDefault(mainPage,info)));
+            caseCollection.Add(new TestCase("Проверка авторизации", (mainPage, info) => Login(mainPage,info)));
             return caseCollection;
         }
 
 
-        void SendToAllByDefault(MainPage mainPage, PortalInfo info)
+        void Login(MainPage mainPage, PortalInfo info)
         {
-            var header = new Header(); 
-            header.EnterLoginPage().LogIn(info);
-            if (!header.IsAuthorized())
+            Header.EnterLoginPage().LogIn(info);
+            if (!Header.IsAuthorized())
                 Log.Error("Не появилась кнопка входа в профиль после авторизации");
         }
     }
