@@ -19,8 +19,7 @@ namespace ATframework3demo.TestCases
 
         void SendToAllByDefault(MainPage mainPage, PortalInfo info)
         {
-            mainPage = new Header().EnterLoginPage().LogIn(info);
-            Header header = new Header();
+            mainPage = Header.EnterLoginPage().LogIn(info);
 
             var recipeSteps = new List<RecipeStep> { new RecipeStep(1, description: "Шаг 1 описание"),
                 new RecipeStep(2, description: "Step 2"),
@@ -42,7 +41,7 @@ namespace ATframework3demo.TestCases
                 ingredients: null,
                 categories: null,
                 steps: recipeSteps);
-            header.EnterRecipeCreationPage().CreateRecipe(recipe);
+            Header.EnterRecipeCreationPage().CreateRecipe(recipe);
 
             //Проверка появления рецепта
         }
