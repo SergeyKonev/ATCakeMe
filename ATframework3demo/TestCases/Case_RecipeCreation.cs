@@ -12,14 +12,39 @@ namespace ATframework3demo.TestCases
         protected override List<TestCase> GetCases()
         {
             var caseCollection = new List<TestCase>();
-            caseCollection.Add(new TestCase("Добавление рецепта", (mainPage, info) => SendToAllByDefault(mainPage, info)));
+            caseCollection.Add(new TestCase("Добавление рецепта(не завершено)", (mainPage, info) => SendToAllByDefault(mainPage, info)));
             return caseCollection;
         }
 
 
         void SendToAllByDefault(MainPage mainPage, PortalInfo info)
         {
-            //RecipeCreationPage recipeCreationPage = mainPage.EnterLoginPage().LogIn(info).EnterRecipeCreationPage();
+            mainPage = new Header().EnterLoginPage().LogIn(info);
+            Header header = new Header();
+
+            var recipeSteps = new List<RecipeStep> { new RecipeStep(1, description: "Шаг 1 описание"),
+                new RecipeStep(2, description: "Step 2"),
+                new RecipeStep(3, description: "    Шаг  "),
+                new RecipeStep(4)
+            };
+
+            var recipeIngredients = new List<Ingredient> { new Ingredient(1, name: "Соль"), new Ingredient(1, name: "Вода") };
+            //TODO: категории и изображения
+
+
+            Recipe recipe = new Recipe(
+                name: DateTime.Now.Ticks.ToString(),
+                description: DateTime.Now.ToString(),
+                images: null,
+                portionNum: DateTime.Now.Hour,
+                cookTime: DateTime.Now.Minute,
+                calories: DateTime.Now.Minute * 10,
+                ingredients: null,
+                categories: null,
+                steps: recipeSteps);
+            header.EnterRecipeCreationPage().CreateRecipe(recipe);
+
+            //Проверка появления рецепта
         }
     }
 }
