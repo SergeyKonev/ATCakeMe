@@ -1,7 +1,11 @@
-﻿namespace atFrameWork2.TestEntities;
+﻿using ATframework3demo.Utils;
+
+namespace atFrameWork2.TestEntities;
 
 public enum Gender
 {
-    Male = 'M',
-    Female = 'F'
+    [StringValue("Мужской")]
+    Male,
+    [StringValue("Женский")]
+    Female
 }
