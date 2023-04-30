@@ -12,7 +12,13 @@ namespace ATframework3demo.PageObjects
             new WebItem("//a[@href=\"/auth/\"]", "Кнопка LogIn").Click();
             return new LoginPage();
         }
-
+        
+        public static RegisterPage EnterRegisterPage()
+        {
+            OpenDropDownProfile();
+            new WebItem("//a[@href=\"/register/\"]", "Кнопка перехода на региcтрацию").Click();
+            return new RegisterPage();
+        }
 
         public static ProfilePage EnterProfile()
         {
@@ -45,7 +51,7 @@ namespace ATframework3demo.PageObjects
         private static void OpenDropDownProfile()
         {
             dropdownProfileMenu.Hover();
-            Thread.Sleep(500); // TODO - заменить на Waiter
+            // Thread.Sleep(500); // TODO - заменить на Waiter
         }
     }
 }
