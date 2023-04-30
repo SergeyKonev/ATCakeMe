@@ -1,47 +1,51 @@
 ﻿using atFrameWork2.SeleniumFramework;
+using OpenQA.Selenium.DevTools.V109.Audits;
 
 namespace ATframework3demo.PageObjects
 {
-    public class Header
+    public static class Header
     {
-        WebItem dropdownProfileMenu = new WebItem("//img[@class=\"profile-image \" and @aria-controls=\"dropdown-menu4\"]", "Выпадающее меню профиля");
-        public LoginPage EnterLoginPage()
+        static WebItem dropdownProfileMenu = new("//img[@class=\"profile-image \" and @aria-controls=\"dropdown-menu4\"]", "Выпадающее меню профиля");
+        public static LoginPage EnterLoginPage()
         {
-            dropdownProfileMenu.Hover();
+            OpenDropDownProfile();
             new WebItem("//a[@href=\"/auth/\"]", "Кнопка LogIn").Click();
             return new LoginPage();
         }
 
 
-        public ProfilePage EnterProfile()
+        public static ProfilePage EnterProfile()
         {
-            dropdownProfileMenu.Hover();
-            Thread.Sleep(500);
+            OpenDropDownProfile();
             new WebItem("//a[@href=\"/profile/\"]", "Кнопка перехода в профиль").Click();
             return new ProfilePage();
         }
 
 
-        public bool IsAuthorized()
+        public static bool IsAuthorized()
         {
-            dropdownProfileMenu.Hover();
-            Thread.Sleep(500);
+            OpenDropDownProfile();
             return new WebItem("//a[@href=\"/profile/\"]", "Кнопка перехода в профиль").WaitElementDisplayed();
         }
 
 
-        public RecipeCreationPage EnterRecipeCreationPage()
+        public static RecipeCreationPage EnterRecipeCreationPage()
         {
             new WebItem("//a[@href=\"/recipe/create/\"]", "Кнопка добаления рецепта").Click();
             return new RecipeCreationPage();
         }
 
 
-        public void Logout()
+        public static void Logout()
         {
-            new WebItem("//img[@aria-controls=\"dropdown-menu4\"]", "Выпадающее меню").Hover();
-            Thread.Sleep(500);
+            OpenDropDownProfile();
             new WebItem("//a[@href=\"/logout/\"]", "Кнопка выхода из аккаунта").Click();
+        }
+
+        private static void OpenDropDownProfile()
+        {
+            dropdownProfileMenu.Hover();
+            Thread.Sleep(500); // TODO - заменить на Waiter
         }
     }
 }
