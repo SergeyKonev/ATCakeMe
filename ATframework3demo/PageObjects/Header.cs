@@ -4,9 +4,10 @@ namespace ATframework3demo.PageObjects
 {
     public class Header
     {
+        WebItem dropdownProfileMenu = new WebItem("//img[@class=\"profile-image \" and @aria-controls=\"dropdown-menu4\"]", "Выпадающее меню профиля");
         public LoginPage EnterLoginPage()
         {
-            new WebItem("//img[@aria-controls=\"dropdown-menu4\"]", "Выпадающее меню").Hover();
+            dropdownProfileMenu.Hover();
             new WebItem("//a[@href=\"/auth/\"]", "Кнопка LogIn").Click();
             return new LoginPage();
         }
@@ -14,7 +15,7 @@ namespace ATframework3demo.PageObjects
 
         public ProfilePage EnterProfile()
         {
-            new WebItem("//img[@aria-controls=\"dropdown-menu4\"]", "Выпадающее меню").Hover();
+            dropdownProfileMenu.Hover();
             Thread.Sleep(500);
             new WebItem("//a[@href=\"/profile/\"]", "Кнопка перехода в профиль").Click();
             return new ProfilePage();
@@ -23,7 +24,7 @@ namespace ATframework3demo.PageObjects
 
         public bool IsAuthorized()
         {
-            new WebItem("//img[@aria-controls=\"dropdown-menu4\"]", "Выпадающее меню").Hover();
+            dropdownProfileMenu.Hover();
             Thread.Sleep(500);
             return new WebItem("//a[@href=\"/profile/\"]", "Кнопка перехода в профиль").WaitElementDisplayed();
         }
