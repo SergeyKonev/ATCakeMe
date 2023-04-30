@@ -1,4 +1,5 @@
 ﻿namespace atFrameWork2.TestEntities;
+using atFrameWork2.BaseFramework.LogTools;
 
 public class Recipe
 {
@@ -13,6 +14,39 @@ public class Recipe
         Ingredients = ingredients;
         Categories = categories;
         Steps = steps;
+        string log = "";
+        log += "Тестовая информация рецепта:\n" +
+            $"Название: {name}\n" +
+            $"Описание: {description}\n" +
+            $"Количество порций: {portionNum}\n" +
+            $"Время готовки: {cookTime}\n" +
+            $"Калории: {calories}\n";
+
+        if (ingredients != null)
+        {
+            log += "Ингредиенты:\n";
+            foreach (Ingredient i in ingredients)
+            {
+                log += (i.Name ?? "") + (i.Amount.ToString() ?? "") + (i.Unit.ToString() ?? "") + "\n";
+            }
+        }
+        if (categories != null)
+        {
+            log += "Категории:\n";
+            foreach (Category c in categories)
+            {
+                log += (c.ToString() ?? "Без названия") + "\n";
+            }
+        }
+        if (steps != null)
+        {
+            log += "Шаги:\n";
+            foreach (RecipeStep s in steps)
+            {
+                log += (s.Description ?? "Нет описания") + "\n";
+            }
+        }
+        Log.Info(log);
     }
 
     public string? Name { get; set; }
