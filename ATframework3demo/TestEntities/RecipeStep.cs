@@ -1,8 +1,8 @@
 ﻿namespace atFrameWork2.TestEntities;
 
-public class Step
+public class RecipeStep
 {
     public int Id { get; set; }
     public string? Image { get; set; }
-    public string Descr { get; set; }
+    public string Description { get; set; }
 }
