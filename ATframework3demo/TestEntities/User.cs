@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using atFrameWork2.BaseFramework.LogTools;
+using ATframework3demo.Utils;
 
 namespace atFrameWork2.TestEntities
 {
@@ -24,7 +25,7 @@ namespace atFrameWork2.TestEntities
                      $"Email {email}," +
                      $"Имя {firstName}," +
                      $"Фамилия {secondName}," +
-                     $"Пол {gender}," +
+                     $"Пол {gender.DisplayName()}," +
                      $"Дополнительная информация {additionalInfo}," +
                      $"Город {city}");
         }
