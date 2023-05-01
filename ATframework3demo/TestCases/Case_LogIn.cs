@@ -18,7 +18,7 @@ namespace ATframework3demo.TestCases
 
         void Login(MainPage mainPage, PortalInfo info)
         {
-            Header.EnterLoginPage().LogIn(info);
+            Header.EnterLoginPage().LogIn(info.PortalAdmin);
             if (!Header.IsAuthorized())
                 Log.Error("Не появилась кнопка входа в профиль после авторизации");
         }
