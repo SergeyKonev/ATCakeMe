@@ -20,14 +20,14 @@ namespace atFrameWork2.TestEntities
             Gender = gender;
             AdditionalInfo = additionalInfo;
             City = city;
-            Log.Info($"Новый пользователь создан: Логин {login}," +
-                     $"Пароль {password}," +
-                     $"Email {email}," +
-                     $"Имя {firstName}," +
-                     $"Фамилия {secondName}," +
-                     $"Пол {gender.DisplayName()}," +
-                     $"Дополнительная информация {additionalInfo}," +
-                     $"Город {city}");
+            Log.Info($"Новый пользователь создан: Логин {login}, " +
+                     $"Пароль {password}, " +
+                     $"Email {email}, " +
+                     $"Имя {firstName}, " +
+                     $"Фамилия {secondName}, " +
+                     $"Пол {gender?.DisplayName()}, " +
+                     $"Дополнительная информация {additionalInfo ?? "Отсутствует "}," +
+                     $"Город {city ?? "Отсутствует"}");
         }
 
         /// <summary>
