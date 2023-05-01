@@ -13,7 +13,7 @@ namespace ATframework3demo.TestCases
         protected override List<TestCase> GetCases()
         {
             var caseCollection = new List<TestCase>();
-            caseCollection.Add(new TestCase("Проверка авторизации", (mainPage, info) => SuccessfulRegistration(mainPage,info)));
+            caseCollection.Add(new TestCase("Проверка регистрации", (mainPage, info) => SuccessfulRegistration(mainPage, info)));
             return caseCollection;
         }
 

@@ -16,14 +16,14 @@ namespace ATframework3demo.PageObjects
         /// <summary>
         /// Login to account using test information
         /// </summary>
-        /// <param name="info"></param>
+        /// <param name="user"></param>
         /// <returns></returns>
-        public MainPage LogIn(PortalInfo info) 
+        public MainPage LogIn(User user) 
         {
             loginField.SendKeys(Keys.Control + "A");
             loginField.SendKeys(Keys.Delete);
-            loginField.SendKeys(info.PortalAdmin.Login);
-            passwordField.SendKeys(info.PortalAdmin.Password);
+            loginField.SendKeys(user.Login ?? "");
+            passwordField.SendKeys(user.Password ?? "");
             submitButton.Click();
             return new MainPage();
         }
