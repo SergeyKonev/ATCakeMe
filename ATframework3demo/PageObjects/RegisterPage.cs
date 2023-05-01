@@ -15,7 +15,7 @@ namespace ATframework3demo.PageObjects
         WebItem confirmPasswdField = new WebItem("//input[@name=\"REGISTER[CONFIRM_PASSWORD]\"]", "Поле подтверждения пороля");
         WebItem fNameField = new WebItem("//input[@name=\"REGISTER[NAME]\"]", "Поле ввода имени");
         WebItem lNameField = new WebItem("//input[@name=\"REGISTER[LAST_NAME]\"]", "Поле ввода фамилии");
-        WebItem genderDrop = new WebItem("//input[@name=\"REGISTER[PERSONAL_GENDER]\"]", "Выпадающий список ввода пола");
+        WebItem genderDrop = new WebItem("//select[@name=\"REGISTER[PERSONAL_GENDER]\"]", "Выпадающий список ввода пола");
         WebItem notesField  = new WebItem("//input[@name=\"REGISTER[PERSONAL_NOTES]\"]", "Поле ввода дополнительной информации");
         WebItem cityField  = new WebItem("//input[@name=\"REGISTER[PERSONAL_CITY]\"]", "Поле ввода города");
         WebItem registerBut = new WebItem("//input[@name=\"register_submit_button\"]", "Кнопка регистрации");
