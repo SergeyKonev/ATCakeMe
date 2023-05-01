@@ -53,5 +53,13 @@ namespace ATframework3demo.PageObjects
             dropdownProfileMenu.Hover();
             // Thread.Sleep(500); // TODO - заменить на Waiter
         }
+
+        public static bool IsRecipeInFeed(String recipeName)
+        {
+            new WebItem("//input[@name=\"search-string\" and @type=\"text\"]", "Строка поиска").SendKeys(recipeName);
+            new WebItem("//input[@alt=\"Submit Form\" and @name=\"search-string\"]", "Кнопка поиска").Click();
+            return new WebItem($"//a[contains(text(), \"{recipeName}\")]", "Карточка с рецептом").WaitElementDisplayed();
+        }
+
     }
 }
