@@ -20,6 +20,7 @@ namespace ATframework3demo.TestCases
 
         void SuccessfulRegistration(MainPage mainPage, PortalInfo info)
         {
+            // Регистрационные данные
             var regUser = new User(
                 login: Generator.RandomString(Generator.RandomInt(3, 10)),
                 password: Generator.RandomString(Generator.RandomInt(6, 15)),
@@ -31,9 +32,21 @@ namespace ATframework3demo.TestCases
                 city: Generator.RandomString(10)
             );
             Header
+            // Открываем страницу регистрации
                 .EnterRegisterPage()
-                .RegisterNewUser(regUser);
-            Waiters.StaticWait_s(10);
+            // Регистрируем пользователя
+                .RegisterNewUser(regUser)
+            // Авторизируемся
+                .LogIn(regUser);
+            // Проверяем авторизацию
+            if (!Header.IsAuthorized())
+                Log.Error("Не появилась кнопка входа в профиль после авторизации");
+            Header 
+            // Открываем профиль
+                .EnterProfile()
+            // Проверяем данные пользователя
+                .CheckUser(regUser);
+            
         }
     }
 }
