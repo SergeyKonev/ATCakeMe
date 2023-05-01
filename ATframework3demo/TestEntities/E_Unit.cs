@@ -1,29 +1,30 @@
-﻿using ATframework3demo.Utils;
+﻿using System.ComponentModel;
+using ATframework3demo.Utils;
 
 namespace atFrameWork2.TestEntities;
 
 public enum Unit
 {
-    [StringValue("грамм")]
+    [Description("грамм")]
     Gram,
-    [StringValue("зубчика")]
+    [Description("зубчика")]
     Сlove,
-    [StringValue("кг")]
+    [Description("кг")]
     Kg,
-    [StringValue("куска")]
+    [Description("куска")]
     Slice,
-    [StringValue("л")]
+    [Description("л")]
     L,
-    [StringValue("мл")]
+    [Description("мл")]
     Ml,
-    [StringValue("по вкусу")]
+    [Description("по вкусу")]
     ToTaste,
-    [StringValue("ст. ложки")]
+    [Description("ст. ложки")]
     Tablespoon,
-    [StringValue("стакан")]
+    [Description("стакан")]
     Glass,
-    [StringValue("ч. ложки")]
+    [Description("ч. ложки")]
     Teaspoon,
-    [StringValue("штук")]
+    [Description("штук")]
     Piece
 }

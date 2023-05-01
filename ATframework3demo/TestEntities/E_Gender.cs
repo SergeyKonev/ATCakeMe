@@ -1,11 +1,12 @@
-﻿using ATframework3demo.Utils;
+﻿using System.ComponentModel;
+using ATframework3demo.Utils;
 
 namespace atFrameWork2.TestEntities;
 
 public enum Gender
 {
-    [StringValue("Мужской")]
+    [Description("Мужской")]
     Male,
-    [StringValue("Женский")]
+    [Description("Женский")]
     Female
 }

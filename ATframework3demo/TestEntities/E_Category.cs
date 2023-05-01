@@ -1,33 +1,34 @@
-﻿using ATframework3demo.Utils;
+﻿using System.ComponentModel;
+using ATframework3demo.Utils;
 
 namespace atFrameWork2.TestEntities;
 
 public enum Category
 {
-    [StringValue("Выпечка")]
+    [Description("Выпечка")]
     Baking,
-    [StringValue("Супы")]
+    [Description("Супы")]
     Soups,
-    [StringValue("Салаты")]
+    [Description("Салаты")]
     Salads,
-    [StringValue("Горячее блюдо")]
+    [Description("Горячее блюдо")]
     HotDish,
-    [StringValue("Холодное блюдо")]
+    [Description("Холодное блюдо")]
     ColdDish,
-    [StringValue("Диетическое")]
+    [Description("Диетическое")]
     Dietary,
-    [StringValue("Сытное")]
+    [Description("Сытное")]
     Satisfying,
-    [StringValue("Сладкое")]
+    [Description("Сладкое")]
     Sweet,
-    [StringValue("Веганское")]
+    [Description("Веганское")]
     Vegan,
-    [StringValue("Мясное")]
+    [Description("Мясное")]
     Meat,
-    [StringValue("Напитки")]
+    [Description("Напитки")]
     Drinks,
-    [StringValue("Закуска")]
+    [Description("Закуска")]
     Snack,
-    [StringValue("Соусы")]
+    [Description("Соусы")]
     Sauces
 }
