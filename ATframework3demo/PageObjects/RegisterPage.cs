@@ -1,5 +1,6 @@
 ﻿using atFrameWork2.SeleniumFramework;
 using atFrameWork2.TestEntities;
+using ATframework3demo.Utils;
 using OpenQA.Selenium;
 
 namespace ATframework3demo.PageObjects
@@ -33,7 +34,7 @@ namespace ATframework3demo.PageObjects
             confirmPasswdField.SendKeys(user.Password);
             fNameField.SendKeys(user.FirstName);
             lNameField.SendKeys(user.SecondName);
-            genderDrop.SelectListItemByText(((char)user.Gender).ToString());
+            genderDrop.SelectListItemByText(user.Gender.DisplayName());
             notesField.SendKeys(user.AdditionalInfo ?? "");
             cityField.SendKeys(user.City ?? "");
             
