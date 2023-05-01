@@ -19,7 +19,7 @@ namespace ATframework3demo.TestCases
 
         void SendToAllByDefault(MainPage mainPage, PortalInfo info)
         {
-            mainPage = Header.EnterLoginPage().LogIn(info);
+            mainPage = Header.EnterLoginPage().LogIn(info.PortalAdmin);
 
             var recipeSteps = new List<RecipeStep> { new RecipeStep(1, description: "Шаг 1 описание"),
                 new RecipeStep(2, description: "Step 2"),
