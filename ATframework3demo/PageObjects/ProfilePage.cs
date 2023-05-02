@@ -34,6 +34,17 @@ namespace ATframework3demo.PageObjects
             editProfilePageBtn.Click();
             return new ProfileEditorPage();
         }
+
+        public void Subscribe()
+        {
+            new WebItem("//a[contains(@href, \"subs\")]", "Кнопка подписки").Click();
+        }
+
+        public bool IsSubscribed()
+        {
+            return new WebItem("//a[contains(@href, \"subsDel\")]", "Кнопка отписки").WaitElementDisplayed();
+        }
+
     }
 
 }
