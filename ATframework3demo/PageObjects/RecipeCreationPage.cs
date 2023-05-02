@@ -1,5 +1,6 @@
 ﻿using atFrameWork2.SeleniumFramework;
 using atFrameWork2.TestEntities;
+using ATframework3demo.Utils;
 
 namespace ATframework3demo.PageObjects
 {
@@ -18,6 +19,8 @@ namespace ATframework3demo.PageObjects
         WebItem submitButton = new WebItem("//input[@name=\"addRecipe\"]", "Кнопка сохранения рецета");
         WebItem addStepButton = new WebItem("//a[contains(@class,\"instruction-button\")]", "Кнопка добавления шага рецепта");
         WebItem addIngredientButton = new WebItem("//a[@class=\"table-button button is-primary is-light\"]", "Кнопка добавления ингредиента");
+        WebItem addCategoryButton = new WebItem("//a[@class=\"tag-button button is-primary is-light\"]", "Кнопка добавления категории");
+        WebItem addImageButton = new WebItem("//a[@class=\"image-button button is-primary is-light\"]", "Кнопка добавления изображений");
 
         /// <summary>
         /// Filling information on recipe creation page according to recipe object
@@ -26,17 +29,15 @@ namespace ATframework3demo.PageObjects
         /// <returns></returns>
         public MainPage CreateRecipe(Recipe recipe)            
         {
-            nameField.SendKeys(recipe.Name ?? "");
+            nameField.SendKeys(recipe.Name);
             descriptionField.SendKeys(recipe.Description ?? "");
             portionNumField.SendKeys(recipe.PortionNum.ToString() ?? "");
             cookingTimeField.SendKeys(recipe.CookTime.ToString() ?? "");
             caloriesField.SendKeys(recipe.Calories.ToString() ?? "");
 
-            ///not implemented
-            /* this.AddImages(recipe.Images);
+            this.AddImages(recipe.Images);
             this.AddCategories(recipe.Categories);
-            this.AddIngredients(recipe.Ingredients);*/
-            ///
+            this.AddIngredients(recipe.Ingredients);
             this.AddSteps(recipe.Steps);
             Thread.Sleep(10000); // test
             submitButton.Click();
@@ -47,12 +48,11 @@ namespace ATframework3demo.PageObjects
         {
             if (steps != null)
             {
-                new WebItem("//textarea[@name=\"RECIPE_INSTRUCTION[]\"]", "Шаг 1 Описание").SendKeys(steps[0].Description ?? "");
-                //new WebItem("//input[@name=\"RECIPE_INSTRUCTION_IMAGES[]\"]", "Шаг 1 Изображение").SendKeys(steps[0].Image ?? "");
-                for (int i = 1; i < steps.Count; i++)
+                for (int i = 0; i < steps.Count; i++)
                 {
-                    addStepButton.Click();
-                    //TODO добавление изображений
+                    if (i>0) addStepButton.Click();
+                    if (steps[i].Image != null)
+                        new WebItem($"//div[@class=\"field update-instruction-delete-{i+1}\"]//child::input", $"Шаг {i+1} Изображение").SendKeys(steps[i].Image);
                     new WebItem($"//div[@class=\"field update-instruction-delete-{i+1}\"]//child::textarea", $"Шаг {i+1} Описание").SendKeys(steps[i].Description ?? "");
                 }
             }
@@ -62,25 +62,38 @@ namespace ATframework3demo.PageObjects
         {
             if (ingredients != null)
             {
-                /*new WebItem("//textarea[@name=\"RECIPE_INSTRUCTION[]\"]", "Шаг 1 Описание").SendKeys(ingredients[0].Name ?? "");
-                //new WebItem("//input[@name=\"RECIPE_INSTRUCTION_IMAGES[]\"]", "Шаг 1 Изображение").SendKeys(steps[0].Image ?? "");
-                for (int i = 1; i < steps.Count; i++)
+                for (int i = 0; i < ingredients.Count; i++)
                 {
-                    addStepButton.Click();
-                    //TODO добавление изображений
-                    new WebItem($"//div[@class=\"field update-instruction-delete-{i + 1}\"]//child::textarea", $"Шаг {i + 1} Описание").SendKeys(steps[i].Description ?? "");
-                }*/
+                    if (i > 0) addIngredientButton.Click();
+                    new WebItem($"//tr[@class=\"update-ingredient-delete-{i + 1}\"]//child::input[@name=\"RECIPE_INGREDIENT[NAME][]\"]", $"Ингредиент {i + 1} Название").SendKeys(ingredients[i].Name ?? "");
+                    new WebItem($"//tr[@class=\"update-ingredient-delete-{i + 1}\"]//child::input[@name=\"RECIPE_INGREDIENT[VALUE][]\"]", $"Ингредиент {i + 1} Количество").SendKeys(ingredients[i].Amount.ToString() ?? "");
+                    new WebItem($"//tr[@class=\"update-ingredient-delete-{i + 1}\"]//child::select[@name=\"RECIPE_INGREDIENT[TYPE][]\"]", "Единица измерения").SelectListItemByText(ingredients[i].Unit?.DisplayName() ?? "");
+                }
             }
         }
 
         private void AddCategories(List<Category>? categories)
         {
-            throw new NotImplementedException();
+            if (categories != null)
+            {
+                for (int i = 0; i < categories.Count; i++)
+                {
+                    if (i > 0) addCategoryButton.Click();
+                    new WebItem($"//div[@class=\"select add-recipe-tags-select update-tag-delete-{i+1}\"]//child::select", $"Категория {i + 1}").SelectListItemByText(categories[i].DisplayName());
+                }
+            }
         }
 
         private void AddImages(List<string>? images)
         {
-            throw new NotImplementedException();
+            if (images != null)
+            {
+                for (int i = 0; i < images.Count; i++)
+                {
+                    if (i>0) addImageButton.Click();
+                    new WebItem($"//div[@class=\"field update-image-delete-{i+1}\"]//child::input[@type=\"file\"]", $"Изображение {i + 1}").SendKeys(images[i]);
+                }
+            }    
         }
     }
 }
