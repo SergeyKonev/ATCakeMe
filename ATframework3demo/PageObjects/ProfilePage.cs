@@ -6,6 +6,8 @@ namespace ATframework3demo.PageObjects
 {
     public class ProfilePage
     {
+        private WebItem editProfilePageBtn = new WebItem("//a[@href=\"/profile/edit/\"]",
+            "Кнопка перехода в режим редактирования профиля");
         /// <summary>
         /// Проверяет соответствуют ли данные пользователя тем, что в профиле
         /// </summary>
@@ -25,6 +27,12 @@ namespace ATframework3demo.PageObjects
                 "Город зарегистрированного пользователя не совпадает с тем, что в профиле");
             descrField.AssertTextContains(user.AdditionalInfo,
                 "Описание зарегистрированного пользователя не совпадает с тем, что в профиле");
+        }
+
+        public ProfileEditorPage OpenProfileEditor()
+        {
+            editProfilePageBtn.Click();
+            return new ProfileEditorPage();
         }
     }
 
