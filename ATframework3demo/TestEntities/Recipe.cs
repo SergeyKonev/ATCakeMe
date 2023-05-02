@@ -3,7 +3,7 @@ using atFrameWork2.BaseFramework.LogTools;
 
 public class Recipe
 {
-    public Recipe(string? name = null, string? description = null, List<string>? images = null, int? portionNum = null, int? cookTime = null, int? calories = null, List<Ingredient>? ingredients = null, List<Category>? categories = null, List<RecipeStep>? steps = null)
+    public Recipe(string name, string? description = null, List<string>? images = null, int? portionNum = null, int? cookTime = null, int? calories = null, List<Ingredient>? ingredients = null, List<Category>? categories = null, List<RecipeStep>? steps = null)
     {
         Name = name;
         Description = description;
