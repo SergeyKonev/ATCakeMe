@@ -15,7 +15,8 @@ public class ProfileEditorPage
     WebItem genderDrop = new WebItem("//select[@name=\"PERSONAL_GENDER\"]", "Выпадающий список ввода пола");
     WebItem notesField  = new WebItem("//textarea[@name=\"PERSONAL_NOTES\"]", "Поле ввода дополнительной информации");
     WebItem cityField  = new WebItem("//input[@name=\"PERSONAL_CITY\"]", "Поле ввода города");
-    WebItem saveBut = new WebItem("//input[@name=\"register_submit_button\"]", "Кнопка регистрации");
+    WebItem photoField = new WebItem("//input[@name=\"PERSONAL_PHOTO\"]", "Поле добавления аватарки");
+    WebItem saveBut = new WebItem("//input[@name=\"save\"]", "Кнопка регистрации");
 
     public User GetUserInfo()
     {
@@ -39,5 +40,35 @@ public class ProfileEditorPage
             gender: gender
             );
         return user;
+    }
+
+    public ProfileEditorPage EditUserProfileInfo(User newUser)
+    {
+        fNameField.ClearAndSendKeys(newUser.FirstName);
+        lNameField.ClearAndSendKeys(newUser.SecondName);
+        genderDrop.SelectListItemByText(newUser.Gender.DisplayName());
+        notesField.ClearAndSendKeys(newUser.AdditionalInfo);
+        cityField.ClearAndSendKeys(newUser.City);
+        return this;
+    }
+
+    public ProfileEditorPage EditUserAuthenticationInfo(User newUser)
+    {
+        loginField.ClearAndSendKeys(newUser.Login);
+        newPasswdField.ClearAndSendKeys(newUser.Password);
+        confirmNewPasswdField.ClearAndSendKeys(newUser.Password);
+        emailField.ClearAndSendKeys(newUser.Email);
+        return this;
+    }
+
+    public ProfileEditorPage EditPhoto(string photoPath)
+    {
+        photoField.ClearAndSendKeys(photoPath);
+        return this;
+    }
+    public ProfileEditorPage SaveEditedInfo()
+    {
+        saveBut.Click();
+        return this;
     }
 }
