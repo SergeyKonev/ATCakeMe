@@ -1,6 +1,9 @@
 ﻿using System.Collections.Concurrent;
 using System.ComponentModel;
 using System.Reflection;
+using System.Runtime.CompilerServices;
+using atFrameWork2.BaseFramework.LogTools;
+using atFrameWork2.TestEntities;
 
 namespace ATframework3demo.Utils;
 
@@ -25,5 +28,18 @@ public static class EnumExtensions
         });
 
         return displayName;
+    }
+
+    public static T GetByName<T>(string name)
+    {
+        foreach (var field in typeof(T).GetFields())
+        {
+            if (field.IsLiteral && field.GetCustomAttribute(typeof(DescriptionAttribute)).Equals(new DescriptionAttribute(name)))
+                //              return field.?;
+                return (T)field.GetValue(null);
+        }
+
+        Log.Error($"Не найдена такая опция {name} в нумераторе {typeof(T)}");
+        throw new ArgumentException("Not found.", nameof(name));
     }
 }
