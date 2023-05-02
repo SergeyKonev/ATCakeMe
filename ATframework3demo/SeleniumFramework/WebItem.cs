@@ -130,6 +130,27 @@ namespace atFrameWork2.SeleniumFramework
             }, driver);
         }
 
+        public string GetSelectedText(IWebDriver driver = default)
+        {
+            WaitElementDisplayed(driver: driver);
+            PrintActionInfo($"Получение выбранной опции в селекте");
+
+            string itemSelectedResultText = "";
+            Execute((select, drv) =>
+            {
+                var selEl = new SelectElement(select);
+                try
+                {
+                    itemSelectedResultText = selEl.SelectedOption.Text;
+                }
+                catch
+                {
+                    throw new Exception("Нет выбранного элемента");
+                }
+            }, driver);
+            return itemSelectedResultText;
+        }
+        
         /// <summary>
         /// Показывает отмечен ли чекбокс/элемента списка
         /// </summary>
