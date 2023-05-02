@@ -20,9 +20,7 @@ namespace ATframework3demo.PageObjects
         /// <returns></returns>
         public MainPage LogIn(User user) 
         {
-            loginField.SendKeys(Keys.Control + "A");
-            loginField.SendKeys(Keys.Delete);
-            loginField.SendKeys(user.Login ?? "");
+            loginField.ClearAndSendKeys(user.Login ?? "");
             passwordField.SendKeys(user.Password ?? "");
             submitButton.Click();
             return new MainPage();
