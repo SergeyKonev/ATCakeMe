@@ -87,6 +87,27 @@ namespace atFrameWork2.SeleniumFramework
                 input.SendKeys(textToInput);
             }, driver);
         }
+        
+        /// <summary>
+        /// Очистка и ввод текста в поле
+        /// </summary>
+        /// <param name="textToInput">Текст который вводим</param>
+        /// <param name="driver"></param>
+        /// <param name="logInputtedText">Выводить ли введённый текст в лог</param>
+        public void ClearAndSendKeys(string textToInput, IWebDriver driver = default, bool logInputtedText = true)
+        {
+            WaitElementDisplayed(driver: driver);
+            string textToLog = $"'{textToInput}'";
+            if (!logInputtedText)
+                textToLog = "[логирование отключено]";
+            PrintActionInfo($"Очистка и ввод текста {textToLog} в элемент");
+
+            Execute((input, drv) =>
+            {
+                input.Clear();
+                input.SendKeys(textToInput);
+            }, driver);
+        }
 
         /// <summary>
         /// Переключение контекста драйвера на заданный iframe
@@ -129,7 +150,12 @@ namespace atFrameWork2.SeleniumFramework
                     throw new Exception($"Пункт списка '{listItemToSelect}' не найден в списке {DescriptionFull}");
             }, driver);
         }
-
+        /// <summary>
+        /// Возвращает выбранный в селекторе текст
+        /// </summary>
+        /// <param name="driver"></param>
+        /// <returns>Текстовое значение выбранной опции</returns>
+        /// <exception cref="Exception"></exception>
         public string GetSelectedText(IWebDriver driver = default)
         {
             WaitElementDisplayed(driver: driver);
