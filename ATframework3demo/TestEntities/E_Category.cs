@@ -7,9 +7,9 @@ public enum Category
 {
     [Description("Выпечка")]
     Baking,
-    [Description("Супы")]
+    [Description("Суп")]
     Soups,
-    [Description("Салаты")]
+    [Description("Салат")]
     Salads,
     [Description("Горячее блюдо")]
     HotDish,
