@@ -4,6 +4,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Remote;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace atFrameWork2.SeleniumFramework
@@ -82,6 +83,20 @@ namespace atFrameWork2.SeleniumFramework
             driver ??= WebItem.DefaultDriver;
             driver.SwitchTo().DefaultContent();
         }
+
+        /// <summary>
+        /// Получение нескольких объектов по XPath
+        /// </summary>
+        /// <param name="xPath"></param>
+        /// <param name="driver"></param>
+        /// <returns></returns>
+        public static ReadOnlyCollection<IWebElement> FindElements(String xPath, IWebDriver driver = default)
+        {
+            Log.Info($"Поиск элементов: {xPath}");
+            driver ??= WebItem.DefaultDriver;
+            return driver.FindElements(By.XPath(xPath));
+        }
+        
 
     }
 }
