@@ -23,7 +23,7 @@ public class ProfileEditorPage
         var email = emailField.GetAttribute("value");
         var fName = fNameField.GetAttribute("value");
         var lName = lNameField.GetAttribute("value");
-        var genderName = genderDrop;
+        var genderName = genderDrop.GetSelectedText();
         var notes = notesField.GetAttribute("value");
         var city = cityField.GetAttribute("value");
         
@@ -35,7 +35,8 @@ public class ProfileEditorPage
             firstName: fName,
             secondName: lName,
             additionalInfo: notes,
-            city: city
+            city: city,
+            gender: gender
             );
         return user;
     }
