@@ -61,5 +61,11 @@ namespace ATframework3demo.PageObjects
             return new WebItem($"//a[contains(text(), \"{recipeName}\")]", "Карточка с рецептом").WaitElementDisplayed();
         }
 
+        public static SearchUsersPage EnterSearchUsersPage()
+        {
+            dropdownProfileMenu.Hover();
+            new WebItem("//a[@href=\"/search/users/\"]", "Кнопка найти пользователя").Click();
+            return new SearchUsersPage();
+        }
     }
 }
