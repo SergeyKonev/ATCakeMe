@@ -29,8 +29,8 @@ namespace ATframework3demo.PageObjects
         /// <returns></returns>
         public MainPage CreateRecipe(Recipe recipe)            
         {
-            nameField.SendKeys(recipe.Name);
-            descriptionField.SendKeys(recipe.Description ?? "");
+            nameField.ClearAndSendKeys(recipe.Name);
+            descriptionField.ClearAndSendKeys(recipe.Description ?? "");
             portionNumField.ClearAndSendKeys(recipe.PortionNum.ToString() ?? "");
             cookingTimeField.ClearAndSendKeys(recipe.CookTime.ToString() ?? "");
             caloriesField.ClearAndSendKeys(recipe.Calories.ToString() ?? "");
@@ -52,8 +52,8 @@ namespace ATframework3demo.PageObjects
                 {
                     if (i>0) addStepButton.Click();
                     if (steps[i].Image != null)
-                        new WebItem($"//div[@class=\"field update-instruction-delete-{i+1}\"]//child::input", $"Шаг {i+1} Изображение").SendKeys(steps[i].Image);
-                    new WebItem($"//div[@class=\"field update-instruction-delete-{i+1}\"]//child::textarea", $"Шаг {i+1} Описание").SendKeys(steps[i].Description ?? "");
+                        new WebItem($"//div[@class=\"field update-instruction-delete-{i+1}\"]//child::input", $"Шаг {i+1} Изображение").ClearAndSendKeys(steps[i].Image);
+                    new WebItem($"//div[@class=\"field update-instruction-delete-{i+1}\"]//child::textarea", $"Шаг {i+1} Описание").ClearAndSendKeys(steps[i].Description ?? "");
                 }
             }
         }
@@ -65,8 +65,8 @@ namespace ATframework3demo.PageObjects
                 for (int i = 0; i < ingredients.Count; i++)
                 {
                     if (i > 0) addIngredientButton.Click();
-                    new WebItem($"//tr[@class=\"update-ingredient-delete-{i + 1}\"]//child::input[@name=\"RECIPE_INGREDIENT[NAME][]\"]", $"Ингредиент {i + 1} Название").SendKeys(ingredients[i].Name ?? "");
-                    new WebItem($"//tr[@class=\"update-ingredient-delete-{i + 1}\"]//child::input[@name=\"RECIPE_INGREDIENT[VALUE][]\"]", $"Ингредиент {i + 1} Количество").SendKeys(ingredients[i].Amount.ToString() ?? "");
+                    new WebItem($"//tr[@class=\"update-ingredient-delete-{i + 1}\"]//child::input[@name=\"RECIPE_INGREDIENT[NAME][]\"]", $"Ингредиент {i + 1} Название").ClearAndSendKeys(ingredients[i].Name ?? "");
+                    new WebItem($"//tr[@class=\"update-ingredient-delete-{i + 1}\"]//child::input[@name=\"RECIPE_INGREDIENT[VALUE][]\"]", $"Ингредиент {i + 1} Количество").ClearAndSendKeys(ingredients[i].Amount.ToString() ?? "");
                     new WebItem($"//tr[@class=\"update-ingredient-delete-{i + 1}\"]//child::select[@name=\"RECIPE_INGREDIENT[TYPE][]\"]", "Единица измерения").SelectListItemByText(ingredients[i].Unit?.DisplayName() ?? "");
                 }
             }
@@ -91,7 +91,7 @@ namespace ATframework3demo.PageObjects
                 for (int i = 0; i < images.Count; i++)
                 {
                     if (i>0) addImageButton.Click();
-                    new WebItem($"//div[@class=\"field update-image-delete-{i+1}\"]//child::input[@type=\"file\"]", $"Изображение {i + 1}").SendKeys(images[i]);
+                    new WebItem($"//div[@class=\"field update-image-delete-{i+1}\"]//child::input[@type=\"file\"]", $"Изображение {i + 1}").ClearAndSendKeys(images[i]);
                 }
             }    
         }
