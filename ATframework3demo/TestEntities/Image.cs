@@ -9,6 +9,6 @@ public class Image
     {
         Name = name;
         string workingDirectory = Environment.CurrentDirectory;
-        Path = Directory.GetParent(workingDirectory).Parent.Parent.FullName + $"\\src\\{name}";
+        Path = Directory.GetParent(workingDirectory).Parent.Parent.Parent.FullName + $"\\source\\{name}";
     }
 }
