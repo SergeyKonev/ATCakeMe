@@ -34,7 +34,7 @@ public static class Generator
             ingredients: haveIngredients ? GenerateIngredients(RandomInt(ingredientsMin, ingredientsMax)) : null,
             categories: haveCategories ? GenerateCategories(RandomInt(categoriesMin, categoriesMax)) : null,
             steps: haveSteps ? GenerateRecipeSteps(RandomInt(stepsMin, stepsMax), RandomInt(stepSizeMin, stepSizeMax)) : null,
-            images: new List<string> { new Image("1.png").Path }
+            images: haveImages ? new List<string> { new Image("1.png").Path } : null
             );
     }
 
@@ -45,6 +45,7 @@ public static class Generator
             ingredients.Add(new Ingredient(i, RandomInt(1, 50), RandomUnit(), "Соль"));
         return ingredients;
     }
+
 
     public static List<RecipeStep> GenerateRecipeSteps(int count, int size)
     {

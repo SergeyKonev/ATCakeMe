@@ -58,4 +58,16 @@ public class Recipe
     public List<Ingredient>? Ingredients { get; set; }
     public List<Category>? Categories { get; set; }
     public List<RecipeStep>? Steps { get; set; }
+
+    public bool Equals(Recipe? other)
+    {
+        return (
+            Name == other.Name &&
+            Description == other.Description &&
+            PortionNum == other.PortionNum &&
+            CookTime == other.CookTime &&
+            Calories == other.Calories
+            //TODO images, steps, ingredients, categories
+            );
+    }
 }
