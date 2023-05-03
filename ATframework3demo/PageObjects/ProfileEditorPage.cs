@@ -57,7 +57,7 @@ public class ProfileEditorPage
         loginField.ClearAndSendKeys(newUser.Login);
         newPasswdField.ClearAndSendKeys(newUser.Password);
         confirmNewPasswdField.ClearAndSendKeys(newUser.Password);
-        emailField.ClearAndSendKeys(newUser.Email);
+        // Пока мейл не важен //emailField.ClearAndSendKeys(newUser.Email ?? );
         return this;
     }
 
