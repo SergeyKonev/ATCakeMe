@@ -22,29 +22,11 @@ namespace ATframework3demo.TestCases
         void Subscribing(MainPage mainPage, PortalInfo info)
         {
             //регистрация 1 пользователя
-            var user1 = new User(
-                login: Generator.RandomString(Generator.RandomInt(3, 10)),
-                password: Generator.RandomString(Generator.RandomInt(6, 15)),
-                email: Generator.RandomString(Generator.RandomInt(5, 10)) + "@mail.ru",
-                firstName: Generator.RandomString(Generator.RandomInt(1, 10)),
-                secondName: Generator.RandomString(Generator.RandomInt(1, 10)),
-                gender: Generator.RandomGender(),
-                additionalInfo: Generator.RandomString(15),
-                city: Generator.RandomString(10)
-            );
-            
+            var user1 = Generator.RandomUser();
             Header.EnterRegisterPage().RegisterNewUser(user1);
+            
             //регистрация 2-го пользователя
-            var user2 = new User(
-                login: Generator.RandomString(Generator.RandomInt(3, 10)),
-                password: Generator.RandomString(Generator.RandomInt(6, 15)),
-                email: Generator.RandomString(Generator.RandomInt(5, 10)) + "@mail.ru",
-                firstName: Generator.RandomString(Generator.RandomInt(1, 10)),
-                secondName: Generator.RandomString(Generator.RandomInt(1, 10)),
-                gender: Generator.RandomGender(),
-                additionalInfo: Generator.RandomString(15),
-                city: Generator.RandomString(10)
-            );
+            var user2 = Generator.RandomUser();
             Header.EnterRegisterPage().RegisterNewUser(user2).LogIn(user2);
             //подписка второго пользователя на первого
             ProfilePage profile = Header.EnterSearchUsersPage().SearchForUser(user1.FirstName, user1.SecondName);
