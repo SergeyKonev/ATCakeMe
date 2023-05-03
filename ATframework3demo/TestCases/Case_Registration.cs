@@ -1,10 +1,8 @@
 ﻿using atFrameWork2.BaseFramework;
 using atFrameWork2.BaseFramework.LogTools;
-using atFrameWork2.SeleniumFramework;
 using atFrameWork2.TestEntities;
 using ATframework3demo.PageObjects;
 using ATframework3demo.Utils;
-using OpenQA.Selenium.DevTools.V108.Audits;
 
 namespace ATframework3demo.TestCases
 {
@@ -21,16 +19,8 @@ namespace ATframework3demo.TestCases
         void SuccessfulRegistration(MainPage mainPage, PortalInfo info)
         {
             // Регистрационные данные
-            var regUser = new User(
-                login: Generator.RandomString(Generator.RandomInt(3, 10)),
-                password: Generator.RandomString(Generator.RandomInt(6, 15)),
-                email: Generator.RandomString(Generator.RandomInt(5, 10)) + "@mail.ru",
-                firstName: Generator.RandomString(Generator.RandomInt(1, 10)),
-                secondName: Generator.RandomString(Generator.RandomInt(1, 10)),
-                gender: Generator.RandomGender(),
-                additionalInfo: Generator.RandomString(15),
-                city: Generator.RandomString(10)
-            );
+            var regUser = Generator.RandomUser();
+            
             Header
             // Открываем страницу регистрации
                 .EnterRegisterPage()

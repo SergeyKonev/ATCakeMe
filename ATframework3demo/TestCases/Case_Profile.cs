@@ -29,15 +29,13 @@ public class Case_Profile : CaseCollectionBuilder
             .OpenProfileEditor();
         
         // Создаем объект нового пользователя
-        User newUser = new User(
-            login: Generator.RandomString(Generator.RandomInt(3, 10)),
-            password: Generator.RandomString(Generator.RandomInt(6, 15)),
-            email: Generator.RandomString(Generator.RandomInt(5, 10)) + "@mail.ru",
-            firstName: Generator.RandomString(Generator.RandomInt(1, 10)),
-            secondName: Generator.RandomString(Generator.RandomInt(1, 10)),
-            gender: Generator.RandomGender(),
-            additionalInfo: Generator.RandomString(15),
-            city: Generator.RandomString(10)
+        User newUser = Generator.RandomUser(
+            haveEmail: false,
+            haveCity: false,
+            haveFirst: false,
+            haveGender: false,
+            haveNotes: false,
+            haveSecond: false
         );
 
         // Изменяем аутентификационные данные о пользователе
@@ -81,16 +79,11 @@ public class Case_Profile : CaseCollectionBuilder
         var oldUser = profileEditor.GetUserInfo();
         
         // Создаем объект нового пользователя
-        User newUser = new User(
-            login: Generator.RandomString(Generator.RandomInt(3, 10)),
-            password: Generator.RandomString(Generator.RandomInt(6, 15)),
-            email: Generator.RandomString(Generator.RandomInt(5, 10)) + "@mail.ru",
-            firstName: Generator.RandomString(Generator.RandomInt(1, 10)),
-            secondName: Generator.RandomString(Generator.RandomInt(1, 10)),
-            gender: Generator.RandomGender(),
-            additionalInfo: Generator.RandomString(15),
-            city: Generator.RandomString(10)
-        );
+        User newUser = Generator.RandomUser(
+            haveEmail: false,
+            haveLogin: false,
+            havePass: false
+            );
 
         // Изменяем данные о пользователе
         profileEditor
