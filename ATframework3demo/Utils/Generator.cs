@@ -14,6 +14,53 @@ public static class Generator
             .Select(s => s[random.Next(s.Length)]).ToArray());
     }
 
+    public static Recipe RandomRecipe(
+        int descrMinLen = 10, int descrMaxLen = 50, bool haveDescr = true,
+        int imagesMinCount = 1, int imagesMaxCount = 5, bool haveImages = true,
+        int portionsMinCount = 1, int portionsMaxCount = 10, bool havePortionNum = true,
+        int cookTimeMin = 1, int cookTimeMax = 100, bool haveCookTime = true,
+        int caloriesMin = 1, int caloriesMax = 3000, bool haveCalories = true,
+        int ingredientsMin = 1, int ingredientsMax = 1, bool haveIngredients = true,
+        int categoriesMin = 1, int categoriesMax = 1, bool haveCategories = true,
+        int stepsMin = 1, int stepsMax = 10, int stepSizeMin = 1, int stepSizeMax = 100, bool haveSteps = true
+        )
+    {
+        return new Recipe(
+            name : DateTime.Now.Ticks.ToString(),
+            description: haveDescr ? RandomString(RandomInt(descrMinLen, descrMaxLen)) : null,
+            portionNum: havePortionNum ? RandomInt(portionsMinCount, portionsMaxCount) : null,
+            cookTime: haveCookTime ? RandomInt(cookTimeMin, cookTimeMax) : null,
+            calories: haveCalories ? RandomInt(caloriesMin,caloriesMax) : null,
+            ingredients: haveIngredients ? GenerateIngredients(RandomInt(ingredientsMin, ingredientsMax)) : null,
+            categories: haveCategories ? GenerateCategories(RandomInt(categoriesMin, categoriesMax)) : null,
+            steps: haveSteps ? GenerateRecipeSteps(RandomInt(stepsMin, stepsMax), RandomInt(stepSizeMin, stepSizeMax)) : null
+            );
+    }
+
+    public static List<Ingredient> GenerateIngredients(int count)
+    {
+        var ingredients = new List<Ingredient>();
+        for (int i = 0; i < count; i++)
+            ingredients.Add(new Ingredient(i, RandomInt(1, 50), RandomUnit(), "Соль"));
+        return ingredients;
+    }
+
+    public static List<RecipeStep> GenerateRecipeSteps(int count, int size)
+    {
+        var steps = new List<RecipeStep>();
+        for (int i = 0; i < count; i++)
+            steps.Add(new RecipeStep(i, description: RandomString(size)));
+        return steps;
+    }
+
+    public static List<Category> GenerateCategories(int count)
+    {
+        var categories = new List<Category>();
+        for (int i = 0; i < count; i++)
+            categories.Add(RandomCategory());
+        return categories;
+    }
+
     public static User RandomUser(
         int loginMinLen = 3, int loginMaxLen = 10, bool haveLogin = true,
         int passMinLen = 6, int passMaxLen = 15, bool havePass = true,
@@ -33,7 +80,7 @@ public static class Generator
             secondName: haveSecond ? Generator.RandomString(Generator.RandomInt(secondMinLen, secondMaxLen)) : null,
             gender: haveGender ? Generator.RandomGender() : null,
             additionalInfo: haveNotes ? Generator.RandomString(Generator.RandomInt(notesMinLen, notesMaxLen)) : null,
-            city: haveCity ? Generator.RandomString(Generator.RandomInt(cityMaxLen, cityMinLen)) : null
+            city: haveCity ? Generator.RandomString(Generator.RandomInt(cityMinLen, cityMaxLen)) : null
         );
     }
     
