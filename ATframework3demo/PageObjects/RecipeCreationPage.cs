@@ -31,15 +31,15 @@ namespace ATframework3demo.PageObjects
         {
             nameField.SendKeys(recipe.Name);
             descriptionField.SendKeys(recipe.Description ?? "");
-            portionNumField.SendKeys(recipe.PortionNum.ToString() ?? "");
-            cookingTimeField.SendKeys(recipe.CookTime.ToString() ?? "");
-            caloriesField.SendKeys(recipe.Calories.ToString() ?? "");
+            portionNumField.ClearAndSendKeys(recipe.PortionNum.ToString() ?? "");
+            cookingTimeField.ClearAndSendKeys(recipe.CookTime.ToString() ?? "");
+            caloriesField.ClearAndSendKeys(recipe.Calories.ToString() ?? "");
 
             this.AddImages(recipe.Images);
             this.AddCategories(recipe.Categories);
             this.AddIngredients(recipe.Ingredients);
             this.AddSteps(recipe.Steps);
-            Thread.Sleep(10000); // test
+            Thread.Sleep(5000); // test
             submitButton.Click();
             return new MainPage();
         }
