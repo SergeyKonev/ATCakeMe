@@ -12,7 +12,7 @@ namespace ATframework3demo.PageObjects
         /// Проверяет соответствуют ли данные пользователя тем, что в профиле
         /// </summary>
         /// <param name="user">Данные о пользователе</param>
-        public void CheckUser(User user)
+        public ProfilePage CheckUser(User user)
         {
             var nameField = new WebItem("//div[@class=\"profile-header\"]", "имя фамилия с профиля");
             var genderField = new WebItem("//div[contains(p,\"Пол:\")]", "пол с профиля");
@@ -27,6 +27,7 @@ namespace ATframework3demo.PageObjects
                 "Город зарегистрированного пользователя не совпадает с тем, что в профиле");
             descrField.AssertTextContains(user.AdditionalInfo,
                 "Описание зарегистрированного пользователя не совпадает с тем, что в профиле");
+            return this;
         }
 
         public ProfileEditorPage OpenProfileEditor()
