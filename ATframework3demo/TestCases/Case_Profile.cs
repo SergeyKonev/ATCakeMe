@@ -57,6 +57,12 @@ public class Case_Profile : CaseCollectionBuilder
         // Проверяем вход
         if (!Header.IsAuthorized())
             Log.Error("Не появилась кнопка входа в профиль после авторизации");
+
+        Header
+            .EnterProfile()
+            .OpenProfileEditor()
+            .EditUserAuthenticationInfo(info.PortalAdmin)
+            .SaveEditedInfo();
     }
 
     void EditProfile(MainPage mainPage, PortalInfo info)
@@ -94,6 +100,9 @@ public class Case_Profile : CaseCollectionBuilder
         // Проверяем пользовательские данные
         Header
             .EnterProfile()
-            .CheckUser(newUser);
+            .CheckUser(newUser)
+            .OpenProfileEditor()
+            .EditUserProfileInfo(oldUser)
+            .SaveEditedInfo();
     }
 }
