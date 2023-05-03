@@ -33,7 +33,8 @@ public static class Generator
             calories: haveCalories ? RandomInt(caloriesMin,caloriesMax) : null,
             ingredients: haveIngredients ? GenerateIngredients(RandomInt(ingredientsMin, ingredientsMax)) : null,
             categories: haveCategories ? GenerateCategories(RandomInt(categoriesMin, categoriesMax)) : null,
-            steps: haveSteps ? GenerateRecipeSteps(RandomInt(stepsMin, stepsMax), RandomInt(stepSizeMin, stepSizeMax)) : null
+            steps: haveSteps ? GenerateRecipeSteps(RandomInt(stepsMin, stepsMax), RandomInt(stepSizeMin, stepSizeMax)) : null,
+            images: new List<string> { new Image("1.png").Path }
             );
     }
 
@@ -49,7 +50,7 @@ public static class Generator
     {
         var steps = new List<RecipeStep>();
         for (int i = 0; i < count; i++)
-            steps.Add(new RecipeStep(i, description: RandomString(size)));
+            steps.Add(new RecipeStep(i, description: RandomString(size), image: new Image("1.png").Path));
         return steps;
     }
 
