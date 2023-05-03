@@ -7,7 +7,7 @@ namespace ATframework3demo.PageObjects
     public class RecipeCreationPage
     {
         /// <summary>
-        /// Class of recipe creation page
+        /// Класс страницы создания рецепта
         /// </summary>
         /// <returns></returns>
 
@@ -23,7 +23,7 @@ namespace ATframework3demo.PageObjects
         WebItem addImageButton = new WebItem("//a[@class=\"image-button button is-primary is-light\"]", "Кнопка добавления изображений");
 
         /// <summary>
-        /// Filling information on recipe creation page according to recipe object
+        /// Заполнение полей рецепта информацией из объекта
         /// </summary>
         /// <param name="recipe"></param>
         /// <returns></returns>

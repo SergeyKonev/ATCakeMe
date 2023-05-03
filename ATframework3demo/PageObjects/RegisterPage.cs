@@ -41,5 +41,10 @@ namespace ATframework3demo.PageObjects
             registerBut.Click();
             return new LoginPage();
         }
+
+        public LoginPage EnterLoginPage()
+        {
+            return new LoginPage(); //NOT IMPLEMENTED
+        }
     }
 }

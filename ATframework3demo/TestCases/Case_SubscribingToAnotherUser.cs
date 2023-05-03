@@ -18,7 +18,11 @@ namespace ATframework3demo.TestCases
             return caseCollection;
         }
 
-
+        /// <summary>
+        /// Кейс подписки одного пользователя на другого
+        /// </summary>
+        /// <param name="mainPage"></param>
+        /// <param name="info"></param>
         void Subscribing(MainPage mainPage, PortalInfo info)
         {
             //регистрация 1 пользователя
@@ -29,7 +33,7 @@ namespace ATframework3demo.TestCases
             var user2 = Generator.RandomUser();
             Header.EnterRegisterPage().RegisterNewUser(user2).LogIn(user2);
             //подписка второго пользователя на первого
-            ProfilePage profile = Header.EnterSearchUsersPage().SearchForUser(user1.FirstName, user1.SecondName);
+            ProfilePage profile = Header.EnterSearchUsersPage().SearchForUser(user1.FirstName ?? "", user1.SecondName ?? "");
             profile.Subscribe();
             if (!profile.IsSubscribed())
                 Log.Error("Не получилось подписаться, либо не отобразилась кнопка отписки");

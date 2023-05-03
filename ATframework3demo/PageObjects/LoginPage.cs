@@ -14,7 +14,7 @@ namespace ATframework3demo.PageObjects
         WebItem submitButton = new WebItem("//input[@name=\"Login\"]", "Кнопка войти");
 
         /// <summary>
-        /// Login to account using test information
+        /// Вход в аккаунт с информацией из объекта пользователя
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
