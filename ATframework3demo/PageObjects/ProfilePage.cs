@@ -46,6 +46,10 @@ namespace ATframework3demo.PageObjects
             return new WebItem("//a[contains(@href, \"subsDel\")]", "Кнопка отписки").WaitElementDisplayed();
         }
 
+        public void DeleteRecipe(string name)
+        {
+            new WebItem($"//button[./../..//child::a[text() = \"{name} \" ]]", "Кнопка удаления рецепта").Click();
+        }
     }
 
 }
