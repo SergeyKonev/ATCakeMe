@@ -5,6 +5,8 @@ namespace ATframework3demo.PageObjects
 {
     public class SearchUsersPage
     {
+        private WebItem searchField = new("//input[@id=\"search-input\"]", "Поле ввода");
+        private WebItem searchBtn = new("//button[@type=\"submit\"]", "Кнопка поиска");
         /// <summary>
         /// Класс страницы поиска других пользователей
         /// </summary>
@@ -13,8 +15,8 @@ namespace ATframework3demo.PageObjects
         /// <returns></returns>
         public ProfilePage SearchForUser(User user) 
         {
-            new WebItem("//input[@id=\"search-input\"]", "Поле ввода").SendKeys(user.Login);
-            new WebItem("//button[@type=\"submit\"]", "Кнопка поиска").Click();
+            searchField.SendKeys(user.Login);
+            searchBtn.Click();
             new WebItem($"//strong[text() = \"{user.FirstName} {user.SecondName} ({user.Login})\"]", "Карточка профиля").Click();
             return new ProfilePage();
         }
