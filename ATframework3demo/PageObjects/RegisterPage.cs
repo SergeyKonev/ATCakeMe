@@ -42,6 +42,10 @@ namespace ATframework3demo.PageObjects
             return new LoginPage();
         }
 
+        /// <summary>
+        /// Перейти на страницу авторизации из страницы регистрации
+        /// </summary>
+        /// <returns></returns>
         public LoginPage EnterLoginPage()
         {
             return new LoginPage(); //NOT IMPLEMENTED

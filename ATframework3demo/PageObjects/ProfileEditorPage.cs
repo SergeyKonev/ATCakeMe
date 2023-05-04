@@ -18,6 +18,10 @@ public class ProfileEditorPage
     WebItem photoField = new WebItem("//input[@name=\"PERSONAL_PHOTO\"]", "Поле добавления аватарки");
     WebItem saveBut = new WebItem("//input[@name=\"save\"]", "Кнопка регистрации");
 
+    /// <summary>
+    /// Получить информацию о пользователе
+    /// </summary>
+    /// <returns>Объект пользователя</returns>
     public User GetUserInfo()
     {
         var login = loginField.GetAttribute("value");
@@ -42,6 +46,11 @@ public class ProfileEditorPage
         return user;
     }
 
+    /// <summary>
+    /// Изменить профильные данные о пользователе
+    /// </summary>
+    /// <param name="newUser">Данные, на которые надо изменить</param>
+    /// <returns></returns>
     public ProfileEditorPage EditUserProfileInfo(User newUser)
     {
         fNameField.ClearAndSendKeys(newUser.FirstName);
@@ -52,6 +61,11 @@ public class ProfileEditorPage
         return this;
     }
 
+    /// <summary>
+    /// Изменить аутентификационные данные о пользователе
+    /// </summary>
+    /// <param name="newUser">Данные на которые надо изменить</param>
+    /// <returns></returns>
     public ProfileEditorPage EditUserAuthenticationInfo(User newUser)
     {
         loginField.ClearAndSendKeys(newUser.Login);
@@ -61,11 +75,21 @@ public class ProfileEditorPage
         return this;
     }
 
-    public ProfileEditorPage EditPhoto(string photoPath)
+    /// <summary>
+    /// Изменить автарку пользователя
+    /// </summary>
+    /// <param name="photo"></param>
+    /// <returns></returns>
+    public ProfileEditorPage EditPhoto(Image photo)
     {
-        photoField.ClearAndSendKeys(photoPath);
+        photoField.ClearAndSendKeys(photo.Path);
         return this;
     }
+    
+    /// <summary>
+    /// Сохранить измененные значения
+    /// </summary>
+    /// <returns></returns>
     public ProfileEditorPage SaveEditedInfo()
     {
         saveBut.Click();

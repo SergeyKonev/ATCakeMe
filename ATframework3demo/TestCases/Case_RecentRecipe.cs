@@ -44,6 +44,6 @@ public class Case_RecentRecipe : CaseCollectionBuilder
         
         // Проверяем есть ли название рецепта в недавних
         Header
-            .AssertLastRecipeName(recipe.Name);
+            .AssertLastRecentRecipeName(recipe.Name);
     }
 }
