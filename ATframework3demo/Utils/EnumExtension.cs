@@ -12,6 +12,11 @@ public static class EnumExtensions
     // Note that we never need to expire these cache items, so we just use ConcurrentDictionary rather than MemoryCache
     private static readonly ConcurrentDictionary<string, string> DisplayNameCache = new ConcurrentDictionary<string, string>();
 
+    /// <summary>
+    /// Получение строкового значения из объекта перечисления
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
     public static string DisplayName(this Enum value)
     {
         var key = $"{value.GetType().FullName}.{value}";
@@ -30,6 +35,13 @@ public static class EnumExtensions
         return displayName;
     }
 
+    /// <summary>
+    /// Получение объекта перечисление из его строкового значения
+    /// </summary>
+    /// <param name="name"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException"></exception>
     public static T GetByName<T>(string name)
     {
         foreach (var field in typeof(T).GetFields())

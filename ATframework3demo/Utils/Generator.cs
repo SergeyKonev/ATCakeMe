@@ -14,6 +14,10 @@ public static class Generator
             .Select(s => s[random.Next(s.Length)]).ToArray());
     }
 
+    /// <summary>
+    /// Создает рецепт на основе переданных параметров
+    /// </summary>
+    /// <returns>Объект рецепта</returns>
     public static Recipe RandomRecipe(
         int descrMinLen = 10, int descrMaxLen = 50, bool haveDescr = true,
         int imagesMinCount = 1, int imagesMaxCount = 5, bool haveImages = true,
@@ -38,6 +42,11 @@ public static class Generator
             );
     }
 
+    /// <summary>
+    /// Создает некоторое количество объектов ингредиента
+    /// </summary>
+    /// <param name="count">Количество ингредиентов</param>
+    /// <returns>Список ингредиентов</returns>
     public static List<Ingredient> GenerateIngredients(int count)
     {
         var ingredients = new List<Ingredient>();
@@ -46,7 +55,12 @@ public static class Generator
         return ingredients;
     }
 
-
+    /// <summary>
+    /// Создает некоторое количество шагов с описанием и картинками
+    /// </summary>
+    /// <param name="count">Количество шагов</param>
+    /// <param name="size">Минимальный размер описания</param>
+    /// <returns>Список шагов</returns>
     public static List<RecipeStep> GenerateRecipeSteps(int count, int size)
     {
         var steps = new List<RecipeStep>();
@@ -55,6 +69,11 @@ public static class Generator
         return steps;
     }
 
+    /// <summary>
+    /// Создает некоторое количество категорий, которые будут добавлены к рецепту
+    /// </summary>
+    /// <param name="count">Количество категорий</param>
+    /// <returns>Список категорий</returns>
     public static List<Category> GenerateCategories(int count)
     {
         var categories = new List<Category>();
@@ -63,6 +82,10 @@ public static class Generator
         return categories;
     }
 
+    /// <summary>
+    /// Создает объект пользователя на основе переданных параметров
+    /// </summary>
+    /// <returns>Объект пользователя</returns>
     public static User RandomUser(
         int loginMinLen = 3, int loginMaxLen = 10, bool haveLogin = true,
         int passMinLen = 6, int passMaxLen = 15, bool havePass = true,
@@ -86,6 +109,10 @@ public static class Generator
         );
     }
     
+    /// <summary>
+    /// Генерирует случайный пол
+    /// </summary>
+    /// <returns></returns>
     public static Gender RandomGender()
     {
         Type t = typeof(Gender);
@@ -95,6 +122,10 @@ public static class Generator
         return value;
     }
     
+    /// <summary>
+    /// Генерирует случайную категорию
+    /// </summary>
+    /// <returns></returns>
     public static Category RandomCategory()
     {
         Type t = typeof(Category);
@@ -104,6 +135,10 @@ public static class Generator
         return value;
     }
     
+    /// <summary>
+    /// Генерирует случайную единицу измерения
+    /// </summary>
+    /// <returns></returns>
     public static Unit RandomUnit()
     {
         Type t = typeof(Unit);
@@ -112,5 +147,12 @@ public static class Generator
         var value = (Unit)values.GetValue(index);
         return value;
     }
+    
+    /// <summary>
+    /// Генерирует случайное число
+    /// </summary>
+    /// <param name="from">минимальное значение</param>
+    /// <param name="to">максимальное значение</param>
+    /// <returns></returns>
     public static int RandomInt(int from = 0, int to = 1000) => random.Next(from, to);
 }
