@@ -136,7 +136,7 @@ namespace ATframework3demo.TestCases
             Header
                 .SearchRecipeByName(recipe1.Name)
                 // Переходим по ссылке на автора этого рецепта
-                .OpenRecipeDetailPage(recipe1.Name)
+                .EnterRecipePage(recipe1.Name)
                 // Проверяем открылась страница автора или другая
                 .OpenAuthorProfilePage()
                 .CheckUser(user1);
@@ -169,7 +169,7 @@ namespace ATframework3demo.TestCases
             Header
                 .SearchRecipeByName(recipe1.Name)
                 // Переходим по ссылке на автора этого рецепта
-                .OpenRecipeDetailPage(recipe1.Name)
+                .EnterRecipePage(recipe1.Name)
                 // Проверяем открылась страница автора или другая
                 .OpenAuthorProfilePage()
                 .CheckUser(user1);
