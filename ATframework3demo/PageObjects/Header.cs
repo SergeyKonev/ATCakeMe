@@ -74,5 +74,24 @@ namespace ATframework3demo.PageObjects
             new WebItem("//a[@href=\"/search/users/\"]", "Кнопка найти пользователя").Click();
             return new SearchUsersPage();
         }
+
+        public static MainPage EnterMainPage()
+        {
+            new WebItem("//a[@href=\"/\"]", "Кнопка перехода на главную страницу").Click();
+            return new MainPage();
+        }
+
+        public static void AssertLastRecipeName(string name)
+        { 
+            OpenRecentRecipeBox();
+            var lastRecipeName = new WebItem(
+                "//a[@onclick=\"displayRecentRecipes()\"]/..//div[@class=\"content\"]/div[@class=\"box box-user-search\"]",
+                "Имя последнего рецепта");
+            lastRecipeName.AssertTextContains(name, "Последний посещенный рецепт не совпадает с действительным");
+        }
+        public static void OpenRecentRecipeBox()
+        {
+            new WebItem("//a[@href=\"/\"]", "Кнопка перехода на главную страницу").Click();
+        }
     }
 }
