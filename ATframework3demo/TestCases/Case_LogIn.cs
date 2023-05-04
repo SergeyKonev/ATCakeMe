@@ -11,7 +11,7 @@ namespace ATframework3demo.TestCases
         protected override List<TestCase> GetCases()
         {
             var caseCollection = new List<TestCase>();
-            caseCollection.Add(new TestCase("Проверка авторизации", (mainPage, info) => Login(mainPage,info)));
+            caseCollection.Add(new TestCase("Проверка авторизации", (mainPage, info) => Login(mainPage, info)));
             return caseCollection;
         }
 
@@ -22,25 +22,21 @@ namespace ATframework3demo.TestCases
         /// <param name="info"></param>
         void Login(MainPage mainPage, PortalInfo info)
         {
+            //Авторизация с использованием тестовых данных
             Header.EnterLoginPage().LogIn(info.PortalAdmin);
+
+            //Проверка отображения кнопки перехода в профиль
             if (!Header.IsAuthorized())
                 Log.Error("Не появилась кнопка входа в профиль после авторизации");
+
+            //Переход в профиль и считывание информации о пользователе
             User user = Header.EnterProfile().OpenProfileEditor().GetUserInfo();
-            if (user.Login != info.PortalAdmin.Login) 
+
+            //Сравнение информации из профиля с указываемой при авторизации
+            if (user.Login != info.PortalAdmin.Login)
             {
                 Log.Error("У пользователя отображается неверный логин");
             }
-        }
-
-        /// <summary>
-        /// NOT IMPLEMENTED
-        /// </summary>
-        /// <param name="mainPage"></param>
-        /// <param name="info"></param>
-        void LoginFromRegistrationPage(MainPage mainPage, PortalInfo info)
-        {
-            Header.EnterRegisterPage().EnterLoginPage();
-            
         }
     }
 }

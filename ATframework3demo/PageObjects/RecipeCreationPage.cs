@@ -65,9 +65,9 @@ namespace ATframework3demo.PageObjects
                 for (int i = 0; i < ingredients.Count; i++)
                 {
                     if (i > 0) addIngredientButton.Click();
-                    new WebItem($"//tr[@class=\"update-ingredient-delete-{i + 1}\"]//child::input[@name=\"RECIPE_INGREDIENT[NAME][]\"]", $"Ингредиент {i + 1} Название").ClearAndSendKeys(ingredients[i].Name ?? "");
-                    new WebItem($"//tr[@class=\"update-ingredient-delete-{i + 1}\"]//child::input[@name=\"RECIPE_INGREDIENT[VALUE][]\"]", $"Ингредиент {i + 1} Количество").ClearAndSendKeys(ingredients[i].Amount.ToString() ?? "");
-                    new WebItem($"//tr[@class=\"update-ingredient-delete-{i + 1}\"]//child::select[@name=\"RECIPE_INGREDIENT[TYPE][]\"]", "Единица измерения").SelectListItemByText(ingredients[i].Unit?.DisplayName() ?? "");
+                    new WebItem($"//tr[contains(@class,\"update-ingredient-delete-{i + 1}\")]//child::input[@name=\"RECIPE_INGREDIENT[NAME][]\"]", $"Ингредиент {i + 1} Название").ClearAndSendKeys(ingredients[i].Name ?? "");
+                    new WebItem($"//tr[contains(@class,\"update-ingredient-delete-{i + 1}\")]//child::input[@name=\"RECIPE_INGREDIENT[VALUE][]\"]", $"Ингредиент {i + 1} Количество").ClearAndSendKeys(ingredients[i].Amount.ToString() ?? "");
+                    new WebItem($"//tr[contains(@class,\"update-ingredient-delete-{i + 1}\")]//child::select[@name=\"RECIPE_INGREDIENT[TYPE][]\"]", "Единица измерения").SelectListItemByText(ingredients[i].Unit?.DisplayName() ?? "");
                 }
             }
         }

@@ -17,35 +17,45 @@ namespace ATframework3demo.TestCases
             return caseCollection;
         }
 
-
+        /// <summary>
+        /// Кейс создания и редактирования рецепта
+        /// </summary>
+        /// <param name="mainPage"></param>
+        /// <param name="info"></param>
         void RecipeEdit(MainPage mainPage, PortalInfo info)
         {
-            mainPage = Header.EnterLoginPage().LogIn(info.PortalAdmin);
-
-
-            //создание рецепта
+            //подготовка тестовых данных
             var recipe = Generator.RandomRecipe();
-            Header.EnterRecipeCreationPage().CreateRecipe(recipe);
-
             var aimRecipe = Generator.RandomRecipe(
                 haveImages: false,
                 haveCategories: false,
                 haveIngredients: false,
                 haveSteps: false);
 
+            //авторизация
+            mainPage = Header.EnterLoginPage().LogIn(info.PortalAdmin);
+
+            //создание рецепта
+            Header.EnterRecipeCreationPage().CreateRecipe(recipe);
+
+            //проверка создался ли рецепт
             if (!Header.IsRecipeInFeed(recipe.Name))
                 Log.Error("Рецепт не появился в ленте");
-            
             RecipePage recipePage = mainPage.EnterRecipePage(recipe.Name);
+
+            //считывание данных отображаемых на странице рецепта
             Recipe recipeOnPage = recipePage.GetRecipe();
 
+            //редактирование рецепта
             recipePage.EnterRecipeEditorPage().CreateRecipe(aimRecipe);
 
+            //проверка на то, отображается ли измененный рецепт в ленте
             if (!Header.IsRecipeInFeed(aimRecipe.Name))
                 Log.Error("Рецепт не появился в ленте");
             recipePage = mainPage.EnterRecipePage(aimRecipe.Name);
             recipeOnPage = recipePage.GetRecipe();
 
+            //проверка на соответствие отображаемых данных на детальной странице, данным, которые указывали при редактировании
             if (!recipeOnPage.Equals(aimRecipe))
                 Log.Error("У измененного рецепта отображаются неверные данные");
         }
