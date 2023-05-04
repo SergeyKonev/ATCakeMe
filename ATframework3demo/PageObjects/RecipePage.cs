@@ -12,6 +12,10 @@ namespace ATframework3demo.PageObjects
         string caloriesString = new WebItem("//div[contains(text(),\"Калории:\")]", "Количество калорий").InnerText().Split(" ")[1];
         string portionsString = new WebItem("//div[contains(text(),\"Количество порций:\")]", "Количество порций").InnerText().Split(" ")[2];
 
+        private WebItem editBtn = new("//a[contains(@href, \"recipe/edit\")]", "Кнопка редактирования рецепта");
+        private WebItem authorOfRecipe = new("//p[@class=\"title is-4\"]/a", "Переход на страницу автора");
+        private WebItem commentTextarea = new("//textarea[@id=\"comment-textarea\"]", "Поле ввода комментария");
+        private WebItem sendComment = new("//input[@alt=\"Submit Form\" and ./parent::form[@id=\"comment-form\"]]", "Кнопка отправки комментария");
         public Recipe GetRecipe()
         {
             return new Recipe(
@@ -25,20 +29,20 @@ namespace ATframework3demo.PageObjects
 
         public RecipeCreationPage EnterRecipeEditorPage()
         {
-            new WebItem("//a[contains(@href, \"recipe/edit\")]", "Кнопка редактирования рецепта").Click();
+            editBtn.Click();
             return new RecipeCreationPage();
         }
 
         public ProfilePage OpenAuthorProfilePage()
         {
-            new WebItem("//p[@class=\"title is-4\"]/a", "Переход на страницу автора").Click();
+            authorOfRecipe.Click();
             return new ProfilePage();
         }
 
         public void WriteComment(string text) 
         {
-            new WebItem("//textarea[@id=\"comment-textarea\"]", "Поле ввода комментария").SendKeys(text);
-            new WebItem("//input[@alt=\"Submit Form\" and ./parent::form[@id=\"comment-form\"]]", "Кнопка отправки комментария").Click();
+            commentTextarea.SendKeys(text);
+            sendComment.Click();
         }
 
         public bool IsCommentExists(User user, String text)
