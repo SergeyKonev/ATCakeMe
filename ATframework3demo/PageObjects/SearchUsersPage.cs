@@ -1,4 +1,5 @@
 ﻿using atFrameWork2.SeleniumFramework;
+using atFrameWork2.TestEntities;
 
 namespace ATframework3demo.PageObjects
 {
@@ -10,12 +11,11 @@ namespace ATframework3demo.PageObjects
         /// <param name="firstName"></param>
         /// <param name="secondName"></param>
         /// <returns></returns>
-        public ProfilePage SearchForUser(string firstName, string secondName) 
+        public ProfilePage SearchForUser(User user) 
         {
-            new WebItem("//input[@name=\"search_name\"]", "Поле ввода имени").SendKeys(firstName);
-            new WebItem("//input[@name=\"search_last\"]", "Поле ввода фамилии").SendKeys(secondName);
+            new WebItem("//input[@id=\"search-input\"]", "Поле ввода").SendKeys(user.Login);
             new WebItem("//button[@type=\"submit\"]", "Кнопка поиска").Click();
-            new WebItem($"//strong[text() = \"{firstName} {secondName}\"]", "Карточка профиля").Click();
+            new WebItem($"//strong[text() = \"{user.FirstName} {user.SecondName} ({user.Login})\"]", "Карточка профиля").Click();
             return new ProfilePage();
         }
     }

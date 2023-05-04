@@ -36,7 +36,7 @@ namespace ATframework3demo.TestCases
             Header.EnterRegisterPage().RegisterNewUser(user2).LogIn(user2);
 
             //поиск и переход на страницу первого пользователя
-            ProfilePage profile = Header.EnterSearchUsersPage().SearchForUser(user1.FirstName ?? "", user1.SecondName ?? "");
+            ProfilePage profile = Header.EnterSearchUsersPage().SearchForUser(user1);
 
             //подписка второго пользователя на первого
             profile.Subscribe();
