@@ -56,5 +56,16 @@ namespace ATframework3demo.PageObjects
             new WebItem("//p[@class=\"title is-4\"]/a", "Переход на страницу автора").Click();
             return new ProfilePage();
         }
+
+        public void WriteComment(string text) 
+        {
+            new WebItem("//textarea[@id=\"comment-textarea\"]", "Поле ввода комментария").SendKeys(text);
+            new WebItem("//input[@alt=\"Submit Form\" and ./parent::form[@id=\"comment-form\"]]", "Кнопка отправки комментария").Click();
+        }
+
+        public bool IfCommentExists(User user, String text)
+        {
+            return new WebItem($"//div[.//child::a[contains(text(), \"{user.FirstName + " " + user.SecondName}\")] and .//child::p[contains(text(), \"{text}\")] and @class=\"card\"]", "Комментарий").WaitElementDisplayed();
+        }
     }
 }
