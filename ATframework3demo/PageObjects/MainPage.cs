@@ -7,7 +7,7 @@ namespace ATframework3demo.PageObjects
 {
     public class MainPage
     {
-        public ProfilePage openRecipeAuthorPage(string recipeName)
+        public ProfilePage OpenRecipeAuthorPage(string recipeName)
         {
             new WebItem($"//a[contains(text(),\"{recipeName}\")]//ancestor::div[@class=\"card card-list\"]//footer//a",
                     $"Кнопка перехода на автора рецепта с названием {recipeName}")
