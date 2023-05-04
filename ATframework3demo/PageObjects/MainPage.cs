@@ -19,5 +19,15 @@ namespace ATframework3demo.PageObjects
             new WebItem($"//a[contains(text(), \"{recipeName}\")]", "Карточка с рецептом").Click();
             return new RecipePage();
         }
+
+        public void LikeRecipe(Recipe recipe)
+        {
+            new WebItem($"//button[contains(@id,\"like-btn-\") and ./parent::div[child::a[contains(text(), \"{recipe.Name}\")]]]", "Кнопка лайка").Click();
+        }
+
+        public bool HasLike(Recipe recipe)
+        {
+            return new WebItem($"//button[contains(@id,\"like-btn-\") and  @class=\"like like-active\"  and ./parent::div[child::a[contains(text(), \"{recipe.Name}\")]]]", "Кнопка лайка").WaitElementDisplayed();
+        }
     }
 }
