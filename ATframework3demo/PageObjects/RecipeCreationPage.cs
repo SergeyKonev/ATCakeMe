@@ -39,7 +39,6 @@ namespace ATframework3demo.PageObjects
             this.AddCategories(recipe.Categories);
             this.AddIngredients(recipe.Ingredients);
             this.AddSteps(recipe.Steps);
-            Thread.Sleep(5000); // test
             submitButton.Click();
             return new MainPage();
         }
