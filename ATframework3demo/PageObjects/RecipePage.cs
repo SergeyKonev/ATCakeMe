@@ -63,7 +63,7 @@ namespace ATframework3demo.PageObjects
             new WebItem("//input[@alt=\"Submit Form\" and ./parent::form[@id=\"comment-form\"]]", "Кнопка отправки комментария").Click();
         }
 
-        public bool IfCommentExists(User user, String text)
+        public bool IsCommentExists(User user, String text)
         {
             return new WebItem($"//div[.//child::a[contains(text(), \"{user.FirstName + " " + user.SecondName}\")] and .//child::p[contains(text(), \"{text}\")] and @class=\"card\"]", "Комментарий").WaitElementDisplayed();
         }

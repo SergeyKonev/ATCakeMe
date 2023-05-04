@@ -51,7 +51,7 @@ namespace ATframework3demo.TestCases
             DriverActions.Refresh();
 
             //проверка, что комментарий отображается
-            if (!recipePage.IfCommentExists(user2 ,comment))
+            if (!recipePage.IsCommentExists(user2 ,comment))
                 Log.Error("Комментарий не добавился");
             
         }
