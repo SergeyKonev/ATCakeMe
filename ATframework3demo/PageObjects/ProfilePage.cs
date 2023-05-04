@@ -6,8 +6,9 @@ namespace ATframework3demo.PageObjects
 {
     public class ProfilePage
     {
-        private WebItem editProfilePageBtn = new WebItem("//a[@href=\"/profile/edit/\"]",
-            "Кнопка перехода в режим редактирования профиля");
+        private WebItem unsubscribeBtn = new("//a[contains(@href, \"subsDel\")]", "Кнопка отписки");
+        private WebItem subscribeBtn = new("//a[contains(@href, \"subs\")]", "Кнопка подписки");
+        private WebItem editProfilePageBtn = new WebItem("//a[@href=\"/profile/edit/\"]", "Кнопка перехода в режим редактирования профиля");
         /// <summary>
         /// Проверяет соответствуют ли данные пользователя тем, что в профиле
         /// </summary>
@@ -38,12 +39,12 @@ namespace ATframework3demo.PageObjects
 
         public void Subscribe()
         {
-            new WebItem("//a[contains(@href, \"subs\")]", "Кнопка подписки").Click();
+            subscribeBtn.Click();
         }
 
         public bool IsSubscribed()
         {
-            return new WebItem("//a[contains(@href, \"subsDel\")]", "Кнопка отписки").WaitElementDisplayed();
+            return unsubscribeBtn.WaitElementDisplayed();
         }
 
         public void DeleteRecipe(string name)
