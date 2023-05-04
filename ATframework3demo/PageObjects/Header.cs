@@ -51,8 +51,9 @@ namespace ATframework3demo.PageObjects
 
         private static void OpenDropDownProfile()
         {
+            dropdownProfileMenu.WaitElementDisplayed();
             dropdownProfileMenu.Hover();
-            // Thread.Sleep(500); // TODO - заменить на Waiter
+            //new WebItem("//div[@class=\"dropdown-content\" and .//parent::div[@id=\"dropdown-menu5\"]]", "Содержимое выпадающего меню").WaitElementDisplayed();
         }
 
         public static bool IsRecipeInFeed(String recipeName)
