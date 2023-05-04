@@ -27,7 +27,10 @@ namespace ATframework3demo.TestCases
 
             //Проверка отображения кнопки перехода в профиль
             if (!Header.IsAuthorized())
+            {
                 Log.Error("Не появилась кнопка входа в профиль после авторизации");
+                return;
+            }
 
             //Переход в профиль и считывание информации о пользователе
             User user = Header.EnterProfile().OpenProfileEditor().GetUserInfo();

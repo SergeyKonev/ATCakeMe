@@ -37,7 +37,10 @@ namespace ATframework3demo.TestCases
 
             //Проверка отображения рецептов в общей ленте
             if (!Header.IsRecipeInFeed(recipe.Name))
+            {
                 Log.Error("Рецепт не появился в ленте");
+                return;
+            }
 
             //Переход на страницу рецепта, получение информации о рецепте
             Recipe recipeOnPage = mainPage.EnterRecipePage(recipe.Name).GetRecipe();

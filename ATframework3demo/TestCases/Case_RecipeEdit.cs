@@ -40,7 +40,12 @@ namespace ATframework3demo.TestCases
 
             //проверка создался ли рецепт
             if (!Header.IsRecipeInFeed(recipe.Name))
+            {
                 Log.Error("Рецепт не появился в ленте");
+                return;
+            }
+
+            //переход на страницу рецепта
             RecipePage recipePage = mainPage.EnterRecipePage(recipe.Name);
 
             //считывание данных отображаемых на странице рецепта
@@ -51,8 +56,15 @@ namespace ATframework3demo.TestCases
 
             //проверка на то, отображается ли измененный рецепт в ленте
             if (!Header.IsRecipeInFeed(aimRecipe.Name))
+            {
                 Log.Error("Рецепт не появился в ленте");
+                return;
+            }
+            
+            //переход на страницу рецепта
             recipePage = mainPage.EnterRecipePage(aimRecipe.Name);
+
+            //считывание информации о рецепте
             recipeOnPage = recipePage.GetRecipe();
 
             //проверка на соответствие отображаемых данных на детальной странице, данным, которые указывали при редактировании

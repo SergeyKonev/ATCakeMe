@@ -12,27 +12,6 @@ namespace ATframework3demo.PageObjects
         string caloriesString = new WebItem("//div[contains(text(),\"Калории:\")]", "Количество калорий").InnerText().Split(" ")[1];
         string portionsString = new WebItem("//div[contains(text(),\"Количество порций:\")]", "Количество порций").InnerText().Split(" ")[2];
 
-        public List<Category> GetCategories()
-        {
-            /*var elements = DriverActions.FindElements("//span[@class=\"tag is-danger is-light\"]");
-            var categories = new List<Category>();
-            foreach (var element in elements)
-            {
-                categories.Add();
-            }*/
-            return new List<Category>();
-        }
-
-        public List<Ingredient> GetIngredients()
-        {
-            return new List<Ingredient>();
-        }
-
-        public List<RecipeStep> GetSteps()
-        {
-            return new List<RecipeStep>();
-        }
-
         public Recipe GetRecipe()
         {
             return new Recipe(
@@ -41,7 +20,6 @@ namespace ATframework3demo.PageObjects
                 portionNum: Convert.ToInt32(portionsString),
                 cookTime: Convert.ToInt32(cookTimeString),
                 calories: Convert.ToInt32(caloriesString)
-                //TODO: категории, шаги, ингредиенты
                 );
         }
 
