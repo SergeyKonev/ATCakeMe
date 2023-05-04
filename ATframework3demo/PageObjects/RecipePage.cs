@@ -51,6 +51,10 @@ namespace ATframework3demo.PageObjects
             return new RecipeCreationPage();
         }
 
-        
+        public ProfilePage OpenAuthorProfilePage()
+        {
+            new WebItem("//p[@class=\"title is-4\"]/a", "Переход на страницу автора").Click();
+            return new ProfilePage();
+        }
     }
 }
