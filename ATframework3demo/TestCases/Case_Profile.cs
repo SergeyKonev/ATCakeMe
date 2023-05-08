@@ -56,6 +56,7 @@ public class Case_Profile : CaseCollectionBuilder
         if (!Header.IsAuthorized())
             Log.Error("Не появилась кнопка входа в профиль после авторизации");
 
+        // Возвращаем данные обратно
         Header
             .EnterProfile()
             .OpenProfileEditor()
