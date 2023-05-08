@@ -13,7 +13,7 @@ namespace ATframework3demo.PageObjects
         string portionsString = new WebItem("//div[contains(text(),\"Количество порций:\")]", "Количество порций").InnerText().Split(" ")[3];
 
         private WebItem editBtn = new("//a[contains(@href, \"recipe/edit\")]", "Кнопка редактирования рецепта");
-        private WebItem authorOfRecipe = new("//p[@class=\"title is-4\"]/a", "Переход на страницу автора");
+        private WebItem authorOfRecipe = new("//p[@class=\"title is-5\"]/a", "Переход на страницу автора");
         private WebItem commentTextarea = new("//textarea[@id=\"comment-textarea\"]", "Поле ввода комментария");
         private WebItem sendComment = new("//input[@alt=\"Submit Form\" and ./parent::form[@id=\"comment-form\"]]", "Кнопка отправки комментария");
         
