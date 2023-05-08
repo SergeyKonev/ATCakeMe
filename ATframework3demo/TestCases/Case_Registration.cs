@@ -30,7 +30,10 @@ namespace ATframework3demo.TestCases
                 .LogIn(regUser);
             // Проверяем авторизацию
             if (!Header.IsAuthorized())
+            {
                 Log.Error("Не появилась кнопка входа в профиль после авторизации");
+                return;
+            }
             Header 
             // Открываем профиль
                 .EnterProfile()

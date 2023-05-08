@@ -29,7 +29,10 @@ namespace ATframework3demo.TestCases
                 .EnterLoginPage()
                 .LogIn(info.PortalAdmin);
             if (!Header.IsAuthorized())
+            {
                 Log.Error("Не появилась кнопка входа в профиль после авторизации");
+                return;
+            }
 
             // Получаем информацию о пользователе, чтобы потом проверить её
             var user1 = Header
@@ -76,8 +79,10 @@ namespace ATframework3demo.TestCases
                 .EnterLoginPage()
                 .LogIn(info.PortalAdmin);
             if (!Header.IsAuthorized())
+            {
                 Log.Error("Не появилась кнопка входа в профиль после авторизации");
-            
+                return;
+            }
             // Получаем информацию о пользователе, чтобы потом проверить её
             var user1 = Header
                 .EnterProfile()
@@ -111,8 +116,10 @@ namespace ATframework3demo.TestCases
                 .EnterLoginPage()
                 .LogIn(info.PortalAdmin);
             if (!Header.IsAuthorized())
+            {
                 Log.Error("Не появилась кнопка входа в профиль после авторизации");
-
+                return;
+            }
             // Получаем информацию о пользователе, чтобы потом проверить её
             var user1 = Header
                 .EnterProfile()
@@ -158,8 +165,10 @@ namespace ATframework3demo.TestCases
                 .EnterLoginPage()
                 .LogIn(info.PortalAdmin);
             if (!Header.IsAuthorized())
+            {
                 Log.Error("Не появилась кнопка входа в профиль после авторизации");
-            
+                return;
+            }
             // Получаем информацию о пользователе, чтобы потом проверить её
             var user1 = Header
                 .EnterProfile()
