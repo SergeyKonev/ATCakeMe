@@ -25,28 +25,44 @@ namespace ATframework3demo.TestCases
         /// <param name="info"></param>
         void Subscribing(MainPage mainPage, PortalInfo info)
         {
-            //тестовые данные
+            // Генерация тестовых данных
             var user1 = Generator.RandomUser();
             var user2 = Generator.RandomUser();
 
-            //регистрация 1 пользователя
+            // Регистрация 1 пользователя
             Header.EnterRegisterPage().RegisterNewUser(user1);
 
-            //регистрация 2-го пользователя и вход в аккаунт
+            // Регистрация 2-го пользователя и вход в аккаунт
             Header.EnterRegisterPage().RegisterNewUser(user2).LogIn(user2);
 
-            //поиск и переход на страницу первого пользователя
+            // Проверка, что первый пользователь отсутствует в подписках
+            if (Header.EnterSubscriptions().IsSubscribed(user1))
+            {
+                Log.Error("Пользователь отображется в подписках без подписки на него");
+                return;
+            }
+
+            // Поиск и переход на страницу первого пользователя
             ProfilePage profile = Header.EnterSearchUsersPage().SearchForUser(user1);
 
-            //подписка второго пользователя на первого
+            // Подписка второго пользователя на первого
             profile.Subscribe();
 
-            //обновление страницы
+            // Обновление страницы
             DriverActions.Refresh();
-            
-            //проверка успешности подписки
-            if (!profile.IsSubscribed())
+
+            // Проверка успешности подписки
+            if (!profile.IsSubscribed()) {
                 Log.Error("Не получилось подписаться, либо не отобразилась кнопка отписки");
+                return;
+            }
+
+            // Проверка появления пользователя в подписках
+            if (!Header.EnterSubscriptions().IsSubscribed(user1))
+            {
+                Log.Error("Пользователь не отображается в подписках");
+            }
+                
         }
     }
 }
