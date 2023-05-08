@@ -23,34 +23,34 @@ namespace ATframework3demo.TestCases
         /// <param name="info"></param>
         void CommentAdding(MainPage mainPage, PortalInfo info)
         {
-            //Генерация тестовых данных
+            // Генерация тестовых данных
             var user1 = Generator.RandomUser();
             var user2 = Generator.RandomUser();
             var recipe = Generator.RandomRecipe();
             var comment = Generator.RandomString(Generator.RandomInt(1, 200));
 
-            //регистрация 1 пользователя и вход в аккаунт
+            // Регистрация 1 пользователя и вход в аккаунт
             Header.EnterRegisterPage().RegisterNewUser(user1).LogIn(user1);
 
-            //создание нового рецепта
+            // Создание нового рецепта
             Header.EnterRecipeCreationPage().CreateRecipe(recipe);
 
-            //выход из аккаунта
+            // Выход из аккаунта
             Header.Logout();
 
-            //регистрация 2 пользователя и вход в аккаунт
+            // Регистрация 2 пользователя и вход в аккаунт
             Header.EnterRegisterPage().RegisterNewUser(user2).LogIn(user2);
 
-            //поиск созданного рецепта и переход на страницу
+            // Поиск созданного рецепта и переход на страницу
             RecipePage recipePage = Header.SearchRecipeByName(recipe.Name).EnterRecipePage(recipe.Name);
 
-            //добавление комментария
+            // Добавление комментария
             recipePage.WriteComment(comment);
 
-            //обновление страницы
+            // Обновление страницы
             DriverActions.Refresh();
 
-            //проверка, что комментарий отображается
+            // Проверка, что комментарий отображается
             if (!recipePage.IsCommentExists(user2 ,comment))
                 Log.Error("Комментарий не добавился");
             

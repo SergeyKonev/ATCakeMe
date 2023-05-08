@@ -7,11 +7,11 @@ namespace ATframework3demo.PageObjects
     {
         private WebItem searchField = new("//input[@id=\"search-input\"]", "Поле ввода");
         private WebItem searchBtn = new("//button[@type=\"submit\"]", "Кнопка поиска");
+       
         /// <summary>
-        /// Класс страницы поиска других пользователей
+        /// Поиск указанного пользователя
         /// </summary>
-        /// <param name="firstName"></param>
-        /// <param name="secondName"></param>
+        /// <param name="user"></param>
         /// <returns></returns>
         public ProfilePage SearchForUser(User user) 
         {

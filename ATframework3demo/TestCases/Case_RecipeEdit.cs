@@ -24,7 +24,7 @@ namespace ATframework3demo.TestCases
         /// <param name="info"></param>
         void RecipeEdit(MainPage mainPage, PortalInfo info)
         {
-            //подготовка тестовых данных
+            // Подготовка тестовых данных
             var recipe = Generator.RandomRecipe();
             var aimRecipe = Generator.RandomRecipe(
                 haveImages: false,
@@ -32,42 +32,48 @@ namespace ATframework3demo.TestCases
                 haveIngredients: false,
                 haveSteps: false);
 
-            //авторизация
+            // Авторизация
             mainPage = Header.EnterLoginPage().LogIn(info.PortalAdmin);
 
-            //создание рецепта
+            // Создание рецепта
             Header.EnterRecipeCreationPage().CreateRecipe(recipe);
 
-            //проверка создался ли рецепт
+            // Переход в каталог рецептов
+            Header.EnterMainPage();
+
+            // Проверка создался ли рецепт
             if (!Header.IsRecipeInFeed(recipe.Name))
             {
                 Log.Error("Рецепт не появился в ленте");
                 return;
             }
 
-            //переход на страницу рецепта
+            // Переход на страницу рецепта
             RecipePage recipePage = mainPage.EnterRecipePage(recipe.Name);
 
-            //считывание данных отображаемых на странице рецепта
+            // Считывание данных отображаемых на странице рецепта
             Recipe recipeOnPage = recipePage.GetRecipe();
 
-            //редактирование рецепта
+            //Редактирование рецепта
             recipePage.EnterRecipeEditorPage().CreateRecipe(aimRecipe);
 
-            //проверка на то, отображается ли измененный рецепт в ленте
+            // Переход в каталог рецептов
+            Header.EnterMainPage();
+
+            // Проверка на то, отображается ли измененный рецепт в ленте
             if (!Header.IsRecipeInFeed(aimRecipe.Name))
             {
                 Log.Error("Рецепт не появился в ленте");
                 return;
             }
             
-            //переход на страницу рецепта
+            // Переход на страницу рецепта
             recipePage = mainPage.EnterRecipePage(aimRecipe.Name);
 
-            //считывание информации о рецепте
+            // Считывание информации о рецепте
             recipeOnPage = recipePage.GetRecipe();
 
-            //проверка на соответствие отображаемых данных на детальной странице, данным, которые указывали при редактировании
+            // Проверка на соответствие отображаемых данных на детальной странице, данным, которые указывали при редактировании
             if (!recipeOnPage.Equals(aimRecipe))
                 Log.Error("У измененного рецепта отображаются неверные данные");
         }

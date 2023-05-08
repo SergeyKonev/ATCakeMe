@@ -22,20 +22,20 @@ namespace ATframework3demo.TestCases
         /// <param name="info"></param>
         void Login(MainPage mainPage, PortalInfo info)
         {
-            //Авторизация с использованием тестовых данных
+            // Авторизация с использованием тестовых данных
             Header.EnterLoginPage().LogIn(info.PortalAdmin);
 
-            //Проверка отображения кнопки перехода в профиль
+            // Проверка отображения кнопки перехода в профиль
             if (!Header.IsAuthorized())
             {
                 Log.Error("Не появилась кнопка входа в профиль после авторизации");
                 return;
             }
 
-            //Переход в профиль и считывание информации о пользователе
+            // Переход в профиль и считывание информации о пользователе
             User user = Header.EnterProfile().OpenProfileEditor().GetUserInfo();
 
-            //Сравнение информации из профиля с указываемой при авторизации
+            // Сравнение информации из профиля с указываемой при авторизации
             if (user.Login != info.PortalAdmin.Login)
             {
                 Log.Error("У пользователя отображается неверный логин");

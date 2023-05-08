@@ -56,7 +56,7 @@ namespace ATframework3demo.PageObjects
         public static bool IsAuthorized()
         {
             OpenDropDownProfile();
-            return loginBtn.WaitElementDisplayed();
+            return  profileBtn.WaitElementDisplayed();
         }
 
         /// <summary>
@@ -150,6 +150,17 @@ namespace ATframework3demo.PageObjects
         public static void OpenRecentRecipeBox()
         {
             recentRecipeBtn.Click();
+        }
+
+        /// <summary>
+        /// Открытие страницы подписок
+        /// </summary>
+        /// <returns></returns>
+        public static SubscriptionsPage EnterSubscriptions()
+        {
+            dropdownProfileMenu.Hover();
+            new WebItem("//a[@href=\"/profile/subs/\"]", "Кнопка перехода на страницу подписок").Click();
+            return new SubscriptionsPage();
         }
     }
 }

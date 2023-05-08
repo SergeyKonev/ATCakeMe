@@ -6,11 +6,6 @@ namespace ATframework3demo.PageObjects
 {
     public class RecipeCreationPage
     {
-        /// <summary>
-        /// Класс страницы создания рецепта
-        /// </summary>
-        /// <returns></returns>
-
         WebItem nameField = new WebItem("//input[@name=\"RECIPE_NAME\"]", "Поле ввода названия рецепта");
         WebItem descriptionField = new WebItem("//textarea[@name=\"RECIPE_DESC\"]", "Поле ввода описания рецепта");
         WebItem portionNumField = new WebItem("//input[@name=\"RECIPE_PORTION\"]", "Поле ввода количества порций");
@@ -27,7 +22,7 @@ namespace ATframework3demo.PageObjects
         /// </summary>
         /// <param name="recipe"></param>
         /// <returns></returns>
-        public MainPage CreateRecipe(Recipe recipe)            
+        public RecipePage CreateRecipe(Recipe recipe)            
         {
             nameField.ClearAndSendKeys(recipe.Name);
             descriptionField.ClearAndSendKeys(recipe.Description ?? "");
@@ -40,9 +35,13 @@ namespace ATframework3demo.PageObjects
             this.AddIngredients(recipe.Ingredients);
             this.AddSteps(recipe.Steps);
             submitButton.Click();
-            return new MainPage();
+            return new RecipePage();
         }
 
+        /// <summary>
+        /// Добавление шагов
+        /// </summary>
+        /// <param name="steps"></param>
         private void AddSteps(List<RecipeStep>? steps)
         {
             if (steps != null)
@@ -51,12 +50,16 @@ namespace ATframework3demo.PageObjects
                 {
                     if (i>0) addStepButton.Click();
                     if (steps[i].Image != null)
-                        new WebItem($"//div[@class=\"field update-instruction-delete-{i+1}\"]//child::input", $"Шаг {i+1} Изображение").ClearAndSendKeys(steps[i].Image);
-                    new WebItem($"//div[@class=\"field update-instruction-delete-{i+1}\"]//child::textarea", $"Шаг {i+1} Описание").ClearAndSendKeys(steps[i].Description ?? "");
+                        new WebItem($"//input[@id=\"recipe-instruction-image-{i+1}\"]", $"Шаг {i+1} Изображение").ClearAndSendKeys(steps[i].Image);
+                    new WebItem($"//textarea[@id=\"recipe-instruction-{i+1}\"]", $"Шаг {i+1} Описание").ClearAndSendKeys(steps[i].Description ?? "");
                 }
             }
         }
 
+        /// <summary>
+        /// Добавление ингредиентов
+        /// </summary>
+        /// <param name="ingredients"></param>
         private void AddIngredients(List<Ingredient>? ingredients)
         {
             if (ingredients != null)
@@ -71,6 +74,10 @@ namespace ATframework3demo.PageObjects
             }
         }
 
+        /// <summary>
+        /// Добавление категорий
+        /// </summary>
+        /// <param name="categories"></param>
         private void AddCategories(List<Category>? categories)
         {
             if (categories != null)
@@ -83,6 +90,10 @@ namespace ATframework3demo.PageObjects
             }
         }
 
+        /// <summary>
+        /// Добавление главных изображений
+        /// </summary>
+        /// <param name="images"></param>
         private void AddImages(List<string>? images)
         {
             if (images != null)

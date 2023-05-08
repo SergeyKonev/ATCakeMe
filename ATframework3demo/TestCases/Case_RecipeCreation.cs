@@ -26,26 +26,29 @@ namespace ATframework3demo.TestCases
         /// <param name="info"></param>
         void RecipeCreation(MainPage mainPage, PortalInfo info)
         {
-            //Генерация тестовых данных
+            // Генерация тестовых данных
             Recipe recipe = Generator.RandomRecipe();
 
-            //Авторизация
+            // Авторизация
             Header.EnterLoginPage().LogIn(info.PortalAdmin);
             
-            //Создание рецептов
-            mainPage = Header.EnterRecipeCreationPage().CreateRecipe(recipe);
+            // Создание рецептов
+            Header.EnterRecipeCreationPage().CreateRecipe(recipe);
 
-            //Проверка отображения рецептов в общей ленте
+            // Переход в каталог рецептов
+            Header.EnterMainPage();
+             
+            // Проверка отображения рецептов в общей ленте
             if (!Header.IsRecipeInFeed(recipe.Name))
             {
                 Log.Error("Рецепт не появился в ленте");
                 return;
             }
 
-            //Переход на страницу рецепта, получение информации о рецепте
+            // Переход на страницу рецепта, получение информации о рецепте
             Recipe recipeOnPage = mainPage.EnterRecipePage(recipe.Name).GetRecipe();
 
-            //Проверка отображаемых данных на странице рецепта
+            // Проверка отображаемых данных на странице рецепта
             if (!recipeOnPage.Equals(recipe))
             {
                 Log.Error("Отображаемые на странице рецепта данные не совпадают с теми, которые вводились при создании");
@@ -59,20 +62,23 @@ namespace ATframework3demo.TestCases
         /// <param name="info"></param>
         void RecipeDeletion(MainPage mainPage, PortalInfo info)
         {
-            //Генерация тестовых данных
+            // Генерация тестовых данных
             Recipe recipe = Generator.RandomRecipe();
             var user = Generator.RandomUser();
 
-            //Создание нового пользователя и авторизация
+            // Создание нового пользователя и авторизация
             Header.EnterRegisterPage().RegisterNewUser(user).LogIn(user);
 
-            //Создание рецепта
+            // Создание рецепта
             Header.EnterRecipeCreationPage().CreateRecipe(recipe);
 
-            //Переход в ленту рецептов пользователя и удаление рецепта
+            // Переход в ленту рецептов пользователя и удаление рецепта
             Header.EnterProfile().DeleteRecipe(recipe.Name);
 
-            //Проверка, удалился ли рецепт из общей ленты
+            // Переход в каталог рецептов
+            Header.EnterMainPage();
+
+            // Проверка, удалился ли рецепт из общей ленты
             if (Header.IsRecipeInFeed(recipe.Name))
                 Log.Error("Рецепт до сих пор отображается в ленте");
         }

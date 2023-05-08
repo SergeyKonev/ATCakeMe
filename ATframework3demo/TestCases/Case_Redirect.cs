@@ -56,6 +56,9 @@ namespace ATframework3demo.TestCases
                 .RegisterNewUser(user2)
                 .LogIn(user2);
 
+            // Переходим в каталог рецептов
+            Header.EnterMainPage();
+
             // Находим созданный рецепт
             Header
                 .SearchRecipeByName(recipe1.Name)
@@ -88,7 +91,10 @@ namespace ATframework3demo.TestCases
             Header
                 .EnterRecipeCreationPage()
                 .CreateRecipe(recipe1);
-            
+
+            // Переходим в каталог рецептов
+            Header.EnterMainPage();
+
             // Находим созданный рецепт
             Header
                 .SearchRecipeByName(recipe1.Name)
@@ -132,6 +138,9 @@ namespace ATframework3demo.TestCases
                 .RegisterNewUser(user2)
                 .LogIn(user2);
 
+            // Переходим в каталог рецептов
+            Header.EnterMainPage();
+
             // Находим созданный рецепт
             Header
                 .SearchRecipeByName(recipe1.Name)
@@ -164,7 +173,10 @@ namespace ATframework3demo.TestCases
             Header
                 .EnterRecipeCreationPage()
                 .CreateRecipe(recipe1);
-            
+
+            // Переходим в каталог рецептов
+            Header.EnterMainPage();
+
             // Находим созданный рецепт
             Header
                 .SearchRecipeByName(recipe1.Name)

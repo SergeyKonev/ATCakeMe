@@ -6,6 +6,7 @@ using atFrameWork2.TestEntities;
 using ATframework3demo.PageObjects;
 using ATframework3demo.Utils;
 using OpenQA.Selenium.DevTools.V108.Audits;
+using Microsoft.AspNetCore.DataProtection.KeyManagement;
 
 namespace ATframework3demo.TestCases
 {
@@ -25,35 +26,57 @@ namespace ATframework3demo.TestCases
         /// <param name="info"></param>
         void RecipeLike(MainPage mainPage, PortalInfo info)
         {
-            //тестовые данные
+            // Тестовые данные
             var user1 = Generator.RandomUser();
             var recipe = Generator.RandomRecipe();
             var user2 = Generator.RandomUser();
 
-            //регистрация 1 пользователя
+            // Регистрация 1 пользователя
             Header.EnterRegisterPage().RegisterNewUser(user1).LogIn(user1);
 
-            //создание рецепта
+            // Создание рецепта
             Header.EnterRecipeCreationPage().CreateRecipe(recipe);
 
-            //выход из аккаунта
+            // Проверка лайков при создании
+            if (Header.EnterProfile().CheckLikes(recipe) != 0)
+            {
+                Log.Error("У рецепта изначально не 0 лайков");
+                return;
+            }
+
+            // Выход из аккаунта
             Header.Logout();
 
-            //регистрация 2-го пользователя и вход в аккаунт
+            // Регистрация 2-го пользователя и вход в аккаунт
             Header.EnterRegisterPage().RegisterNewUser(user2).LogIn(user2);
 
-            //поиск рецепта в ленте
+            // Поиск рецепта в ленте
             Header.SearchRecipeByName(recipe.Name);
 
-            //установка лайка на рецепте
+            // Установка лайка на рецепте
             mainPage.LikeRecipe(recipe);
 
-            //обновление страницы
+            // Обновление страницы
             DriverActions.Refresh();
 
-            //проверка лайка
+            // Проверка лайка
             if (!mainPage.HasLike(recipe))
+            {
                 Log.Error("Не получилось поставить лайк");
+                return;
+            }
+
+            // Выход из аккаунта
+            Header.Logout();
+
+            // Авторизация 1-го пользователя
+            Header.EnterLoginPage().LogIn(user1);
+
+            // Проверка появления лайка в профиле у первого пользователя
+            if (Header.EnterProfile().CheckLikes(recipe) != 1)
+            {
+                Log.Error("У рецепта отображается неправильное количество лайков");
+            }
         }
     }
 }

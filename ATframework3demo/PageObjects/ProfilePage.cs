@@ -7,7 +7,7 @@ namespace ATframework3demo.PageObjects
     public class ProfilePage
     {
         private WebItem unsubscribeBtn = new("//a[contains(@href, \"subsDel\")]", "Кнопка отписки");
-        private WebItem subscribeBtn = new("//a[contains(@href, \"subs\")]", "Кнопка подписки");
+        private WebItem subscribeBtn = new("//a[contains(@href, \"?subs\")]", "Кнопка подписки");
         private WebItem editProfilePageBtn = new WebItem("//a[@href=\"/profile/edit/\"]", "Кнопка перехода в режим редактирования профиля");
         
         /// <summary>
@@ -68,6 +68,15 @@ namespace ATframework3demo.PageObjects
         {
             new WebItem($"//button[./../..//child::a[text() = \"{name} \" ]]", "Кнопка удаления рецепта").Click();
         }
-    }
 
+        /// <summary>
+        /// Проверка количества лайков на рецепте
+        /// </summary>
+        /// <param name="recipe"></param>
+        /// <returns></returns>
+        public int CheckLikes(Recipe recipe)
+        {
+            return Convert.ToInt32(new WebItem($"//div[@class=\"card-footer-item\" and  ../parent::div[.//child::a[contains(text(), \"{recipe.Name}\")]]]", "Лайки на карточке").InnerText().Split(" ")[1]);            
+        }
+    }
 }

@@ -4,9 +4,6 @@ using OpenQA.Selenium;
 
 namespace ATframework3demo.PageObjects
 {
-    /// <summary>
-    /// Login Page Class
-    /// </summary>
     public class LoginPage
     {
         WebItem loginField = new WebItem("//input[@name=\"USER_LOGIN\"]", "Поле ввода логина");

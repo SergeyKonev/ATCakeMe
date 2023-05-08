@@ -32,6 +32,9 @@ public class Case_RecentRecipe : CaseCollectionBuilder
             .EnterRecipeCreationPage()
             .CreateRecipe(recipe);
 
+        //Переходим в каталог рецептов
+        Header.EnterMainPage();
+
         // Находим рецепт в поиске
         Header
             .SearchRecipeByName(recipe.Name)

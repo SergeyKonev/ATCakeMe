@@ -17,8 +17,6 @@ public enum Unit
     L,
     [Description("мл")]
     Ml,
-    [Description("по вкусу")]
-    ToTaste,
     [Description("ст. ложки")]
     Tablespoon,
     [Description("стакан")]

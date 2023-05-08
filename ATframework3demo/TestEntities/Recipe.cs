@@ -59,6 +59,11 @@ public class Recipe
     public List<Category>? Categories { get; set; }
     public List<RecipeStep>? Steps { get; set; }
 
+    /// <summary>
+    /// Сравнение с другим объектом рецепта по основным полям
+    /// </summary>
+    /// <param name="other"></param>
+    /// <returns></returns>
     public bool Equals(Recipe? other)
     {
         return (
