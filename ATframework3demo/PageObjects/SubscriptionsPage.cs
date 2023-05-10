@@ -13,7 +13,7 @@ namespace ATframework3demo.PageObjects
         /// <returns></returns>
         public bool IsSubscribed(User user)
         {
-            return new WebItem($"//strong[text() = \"{user.FirstName} {user.SecondName}\"]", "Карточка пользователя").WaitElementDisplayed();
+            return new WebItem($"//strong[text() = \"{user.FirstName} {user.SecondName} ({user.Login})\"]", "Карточка пользователя").WaitElementDisplayed();
         }
         
     }

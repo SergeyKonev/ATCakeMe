@@ -76,7 +76,7 @@ namespace ATframework3demo.PageObjects
         /// <returns></returns>
         public int CheckLikes(Recipe recipe)
         {
-            return Convert.ToInt32(new WebItem($"//div[@class=\"card-footer-item\" and  ../parent::div[.//child::a[contains(text(), \"{recipe.Name}\")]]]", "Лайки на карточке").InnerText().Split(" ")[1]);            
+            return Convert.ToInt32(new WebItem($"//div[@class=\"card-footer-item\" and  ../parent::div[.//child::a[contains(text(), \"{recipe.Name}\")]]]", "Лайки на карточке").InnerText().Split(" ")[2]);            
         }
     }
 }

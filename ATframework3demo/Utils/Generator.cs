@@ -1,5 +1,8 @@
 ﻿using atFrameWork2.TestEntities;
 using ATframework3demo.PageObjects;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Markup;
 
 namespace ATframework3demo.Utils;
 
@@ -24,8 +27,8 @@ public static class Generator
         int portionsMinCount = 1, int portionsMaxCount = 10, bool havePortionNum = true,
         int cookTimeMin = 1, int cookTimeMax = 100, bool haveCookTime = true,
         int caloriesMin = 1, int caloriesMax = 3000, bool haveCalories = true,
-        int ingredientsMin = 1, int ingredientsMax = 10, bool haveIngredients = true,
-        int categoriesMin = 1, int categoriesMax = 1, bool haveCategories = true,
+        int ingredientsMin = 1, int ingredientsMax = 5, bool haveIngredients = true,
+        int categoriesMin = 1, int categoriesMax = 6, bool haveCategories = true,
         int stepsMin = 1, int stepsMax = 10, int stepSizeMin = 1, int stepSizeMax = 100, bool haveSteps = true
         )
     {
@@ -50,8 +53,10 @@ public static class Generator
     public static List<Ingredient> GenerateIngredients(int count)
     {
         var ingredients = new List<Ingredient>();
+        var names = new List<string>() { "соль", "помидоры", "вода", "картофель", "сахар" };
+        names.Shuffle();
         for (int i = 0; i < count; i++)
-            ingredients.Add(new Ingredient(i, RandomInt(1, 50), RandomUnit(), RandomString(RandomInt(1, 20))));
+            ingredients.Add(new Ingredient(i, RandomInt(1, 50), RandomUnit(), names[i]));
         return ingredients;
     }
 
@@ -77,8 +82,10 @@ public static class Generator
     public static List<Category> GenerateCategories(int count)
     {
         var categories = new List<Category>();
+        var values = Enum.GetValues(typeof(Category)).OfType<Category>().ToList(); ;
+        values.Shuffle();
         for (int i = 0; i < count; i++)
-            categories.Add(RandomCategory());
+            categories.Add((Category)values[i]);
         return categories;
     }
 
@@ -155,4 +162,23 @@ public static class Generator
     /// <param name="to">максимальное значение</param>
     /// <returns></returns>
     public static int RandomInt(int from = 0, int to = 1000) => random.Next(from, to);
+
+    /// <summary>
+    /// Перемешивает список
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="list"></param>
+    public static void Shuffle<T>(this IList<T> list)
+    {
+        Random rng = new Random();
+        int n = list.Count;
+        while (n > 1)
+        {
+            n--;
+            int k = rng.Next(n + 1);
+            T value = list[k];
+            list[k] = list[n];
+            list[n] = value;
+        }
+    }
 }
