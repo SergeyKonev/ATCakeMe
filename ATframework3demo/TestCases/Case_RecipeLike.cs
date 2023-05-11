@@ -59,6 +59,9 @@ namespace ATframework3demo.TestCases
             // Обновление страницы
             DriverActions.Refresh();
 
+            // Поиск рецепта в ленте
+            Header.SearchRecipeByName(recipe.Name);
+
             // Проверка лайка
             if (!mainPage.HasLike(recipe))
             {

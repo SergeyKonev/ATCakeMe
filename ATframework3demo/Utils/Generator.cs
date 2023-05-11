@@ -27,7 +27,7 @@ public static class Generator
         int portionsMinCount = 1, int portionsMaxCount = 10, bool havePortionNum = true,
         int cookTimeMin = 1, int cookTimeMax = 100, bool haveCookTime = true,
         int caloriesMin = 1, int caloriesMax = 3000, bool haveCalories = true,
-        int ingredientsMin = 1, int ingredientsMax = 5, bool haveIngredients = true,
+        int ingredientsMin = 1, int ingredientsMax = 4, bool haveIngredients = true,
         int categoriesMin = 1, int categoriesMax = 6, bool haveCategories = true,
         int stepsMin = 1, int stepsMax = 10, int stepSizeMin = 1, int stepSizeMax = 100, bool haveSteps = true
         )
@@ -53,7 +53,7 @@ public static class Generator
     public static List<Ingredient> GenerateIngredients(int count)
     {
         var ingredients = new List<Ingredient>();
-        var names = new List<string>() { "соль", "помидоры", "вода", "картофель", "сахар" };
+        var names = new List<string>() { "соль", "помидоры", "вода", "картофель" };
         names.Shuffle();
         for (int i = 0; i < count; i++)
             ingredients.Add(new Ingredient(i, RandomInt(1, 50), RandomUnit(), names[i]));

@@ -6,7 +6,7 @@ using OpenQA.Selenium.DevTools.V109.Audits;
 namespace ATframework3demo.PageObjects
 {
     public static class Header
-    {
+    {   
         private static WebItem mainPageBtn = new("//a[@href=\"/\"]", "Кнопка перехода на главную страницу");
         private static WebItem createRecipeBtn = new("//a[@href=\"/recipe/create/\"]", "Кнопка добаления рецепта");
         private static WebItem recentRecipeBtn = new WebItem("//a[@onclick=\"displayRecentRecipes()\"]","Кнопка открытия недавних рецептов");
@@ -14,7 +14,7 @@ namespace ATframework3demo.PageObjects
         private static WebItem registerBtn = new("//a[@href=\"/register/\"]", "Кнопка перехода на региcтрацию");
         private static WebItem loginBtn = new("//a[@href=\"/auth/\"]", "Кнопка LogIn");
         private static WebItem logoutBtn = new("//a[@href=\"/logout/\"]", "Кнопка выхода из аккаунта");
-        private static WebItem dropdownProfileMenu = new("//img[@class=\"profile-image \" and @aria-controls=\"dropdown-menu4\"]", "Выпадающее меню профиля");
+        private static WebItem dropdownProfileMenu = new("//div[@class=\"dropdown is-hoverable is-right profile-icon\"]", "Выпадающее меню профиля");
         private static WebItem searchUserBtn = new("//a[@href=\"/search/users/\"]", "Кнопка найти пользователя");
         private static WebItem searchField = new("//input[@name=\"search-string\" and @type=\"text\"]", "Строка поиска");
         private static WebItem searchBtn = new("//input[@alt=\"Submit Form\" and @name=\"search-string\"]", "Кнопка поиска");
